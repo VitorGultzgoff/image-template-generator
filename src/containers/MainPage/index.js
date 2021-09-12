@@ -1,5 +1,6 @@
 // Libs
 import React, { useState } from 'react'
+import { RMIUploader } from 'react-multiple-image-uploader';
 
 // Components
 import Stepper from '@material-ui/core/Stepper'
@@ -14,11 +15,16 @@ function getSteps() {
 
 function MainPage() {
   const [activeStep, setActiveStep] = useState(0);
+  const [pictures, setPictures] = useState([]);
   const steps = getSteps();
 
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
+
+  const onUpload = (data) => {
+    setPictures(pictures)
+  }
   return (
     <div>
       <Stepper alternativeLabel activeStep={activeStep} connector={<StepConnectorStyled />}>
@@ -28,6 +34,10 @@ function MainPage() {
           </Step>
         ))}
       </Stepper>
+      <RMIUploader
+        onUpload={onUpload}
+        dataSources={pictures}
+      />
     </div>
   )
 }
