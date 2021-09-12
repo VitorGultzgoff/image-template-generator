@@ -1,6 +1,5 @@
 // Libs
 import React, { useState } from 'react'
-import { RMIUploader } from 'react-multiple-image-uploader';
 
 // Components
 import Stepper from '@material-ui/core/Stepper'
@@ -8,6 +7,9 @@ import Step from '@material-ui/core/Step'
 import StepConnectorStyled from 'components/StepConnectorStyled'
 import StepIconStyled from 'components/StepIconStyled'
 import StepLabel from '@material-ui/core/StepLabel'
+
+// Utils
+import { fileToDataURL } from 'utils/file'
 
 function getSteps() {
   return ['Seleção de imagens', 'Edição de imagens', 'Inclusão de informações', 'Geração do template']
@@ -22,9 +24,17 @@ function MainPage() {
     setActiveStep(step);
   };
 
-  const onUpload = (data) => {
-    setPictures(pictures)
+  const transformFilesIntoImages = files => {
+    const filesArray = Array.prototype.slice.call(files)
+    return Promise.all(filesArray.map(fileToDataURL))
   }
+
+  const uploadImages = (event) => {
+    const files = event.target.files;
+    const images = transformFilesIntoImages(files)
+    images.then(imgsData => setPictures(imgsData))
+  }
+
   return (
     <div>
       <Stepper alternativeLabel activeStep={activeStep} connector={<StepConnectorStyled />}>
@@ -34,9 +44,11 @@ function MainPage() {
           </Step>
         ))}
       </Stepper>
-      <RMIUploader
-        onUpload={onUpload}
-        dataSources={pictures}
+      <input
+        accept="image/*"
+        multiple
+        type="file"
+        onChange={uploadImages}
       />
     </div>
   )
