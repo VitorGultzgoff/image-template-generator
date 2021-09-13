@@ -1,5 +1,6 @@
 // Libs
 import React, { useState } from 'react'
+import { FilePond, File, registerPlugin } from 'react-filepond'
 
 // Components
 import Stepper from '@material-ui/core/Stepper'
@@ -10,6 +11,20 @@ import StepLabel from '@material-ui/core/StepLabel'
 
 // Utils
 import { fileToDataURL } from 'utils/file'
+
+// Import FilePond styles
+import 'filepond/dist/filepond.min.css'
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+
+// Register the plugins
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
+
 
 function getSteps() {
   return ['Seleção de imagens', 'Edição de imagens', 'Inclusão de informações', 'Geração do template']
@@ -29,8 +44,12 @@ function MainPage() {
     return Promise.all(filesArray.map(fileToDataURL))
   }
 
-  const uploadImages = (event) => {
-    const files = event.target.files;
+  const transformPondDataIntoImages = pondData => {
+    return pondData.map(actualPondData => actualPondData.file)
+  }
+
+  const uploadImages = (pondData) => {
+    const files = transformPondDataIntoImages(pondData)
     const images = transformFilesIntoImages(files)
     images.then(imgsData => setPictures(imgsData))
   }
@@ -44,11 +63,13 @@ function MainPage() {
           </Step>
         ))}
       </Stepper>
-      <input
-        accept="image/*"
-        multiple
-        type="file"
-        onChange={uploadImages}
+      <FilePond
+        files={pictures}
+        onupdatefiles={uploadImages}
+        allowMultiple={true}
+        maxFiles={250}
+        name="files"
+        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />
     </div>
   )
