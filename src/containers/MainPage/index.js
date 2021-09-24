@@ -1,6 +1,6 @@
 // Libs
 import React, { useState } from 'react'
-import { FilePond, File, registerPlugin } from 'react-filepond'
+import { FilePond, registerPlugin } from 'react-filepond'
 
 // Components
 import Stepper from '@material-ui/core/Stepper'
