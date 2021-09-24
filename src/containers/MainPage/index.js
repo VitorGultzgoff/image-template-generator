@@ -13,6 +13,7 @@ import StepLabel from '@material-ui/core/StepLabel'
 import { MAIN_STEPS_ENUM } from 'constants/steps'
 
 // Utils
+import _isEmpty from 'lodash/isEmpty'
 import { fileToDataURL } from 'utils/file'
 
 // Import FilePond styles
@@ -39,13 +40,18 @@ function MainPage() {
   const steps = getSteps();
 
   const handleStep = (step) => () => {
-    validateStepTarget(step)
-    setActiveStep(step);
+    const isValid = validateStepTarget(step)
+    if (!isValid) return
+    setActiveStep(step)
   }
 
   const validateStepTarget = (stepTarget) => {
-    switch(stepTarget) {
+    switch (stepTarget) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
+        if (_isEmpty(pictures)) {
+          return false
+        }
+        break;
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
