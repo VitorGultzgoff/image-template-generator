@@ -9,7 +9,7 @@ import PanToolIcon from '@material-ui/icons/PanTool';
 import WorkIcon from '@material-ui/icons/Work';
 
 // Styling
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStepIconStyles = makeStyles({
   root: {
