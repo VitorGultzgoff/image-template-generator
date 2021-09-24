@@ -40,18 +40,19 @@ function MainPage() {
   const steps = getSteps();
 
   const handleStep = (step) => () => {
+    if (activeStep === step) return false
     const isValid = validateStepTarget(step)
     if (!isValid) return
     setActiveStep(step)
   }
 
   const validateStepTarget = (stepTarget) => {
-    switch (stepTarget) {
+    switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
         if (_isEmpty(pictures)) {
           return false
         }
-        break;
+        return true
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
