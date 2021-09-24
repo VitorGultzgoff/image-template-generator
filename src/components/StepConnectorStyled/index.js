@@ -2,7 +2,7 @@
 import StepConnector from '@material-ui/core/StepConnector';
 
 // Styles
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const StepConnectorStyled = withStyles({
   alternativeLabel: {
