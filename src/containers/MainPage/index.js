@@ -9,6 +9,9 @@ import StepConnectorStyled from 'components/StepConnectorStyled'
 import StepIconStyled from 'components/StepIconStyled'
 import StepLabel from '@material-ui/core/StepLabel'
 
+// Constants
+import { MAIN_STEPS_ENUM } from 'constants/steps'
+
 // Utils
 import { fileToDataURL } from 'utils/file'
 
@@ -36,8 +39,20 @@ function MainPage() {
   const steps = getSteps();
 
   const handleStep = (step) => () => {
+    validateStepTarget(step)
     setActiveStep(step);
-  };
+  }
+
+  const validateStepTarget = (stepTarget) => {
+    switch(stepTarget) {
+      case MAIN_STEPS_ENUM.SELECT_IMAGES:
+      case MAIN_STEPS_ENUM.EDIT_IMAGES:
+      case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
+      case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
+      default:
+        break;
+    }
+  }
 
   const transformFilesIntoImages = files => {
     const filesArray = Array.prototype.slice.call(files)
@@ -56,9 +71,15 @@ function MainPage() {
 
   return (
     <div>
-      <Stepper alternativeLabel activeStep={activeStep} connector={<StepConnectorStyled />}>
+      <Stepper
+        alternativeLabel
+        activeStep={activeStep}
+        connector={<StepConnectorStyled />}>
         {steps.map((label, stepIndex) => (
-          <Step key={label} onClick={handleStep(stepIndex)}>
+          <Step
+            key={label}
+            onClick={handleStep(stepIndex)}
+          >
             <StepLabel StepIconComponent={StepIconStyled}>{label}</StepLabel>
           </Step>
         ))}
