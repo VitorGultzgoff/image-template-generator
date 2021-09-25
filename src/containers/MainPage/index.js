@@ -1,8 +1,8 @@
 // Libs
 import React, { useState } from 'react'
-import { FilePond, registerPlugin } from 'react-filepond'
 
 // Components
+import SelectImages from 'components/SelectImages'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepConnectorStyled from 'components/StepConnectorStyled'
@@ -14,21 +14,6 @@ import { MAIN_STEPS_ENUM } from 'constants/steps'
 
 // Utils
 import _isEmpty from 'lodash/isEmpty'
-import { fileToDataURL } from 'utils/file'
-
-// Import FilePond styles
-import 'filepond/dist/filepond.min.css'
-
-// Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
-
-// Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
-
 
 function getSteps() {
   return ['Seleção de imagens', 'Edição de imagens', 'Inclusão de informações', 'Geração do template']
@@ -46,6 +31,15 @@ function MainPage() {
     setActiveStep(step)
   }
 
+  const renderContentAccordingStep = () => {
+    switch(activeStep) {
+      case MAIN_STEPS_ENUM.SELECT_IMAGES:
+        return <SelectImages pictures={pictures} setPictures={setPictures} />
+      default:
+        break;
+    }
+  }
+
   const validateStepTarget = (stepTarget) => {
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
@@ -59,21 +53,6 @@ function MainPage() {
       default:
         break;
     }
-  }
-
-  const transformFilesIntoImages = files => {
-    const filesArray = Array.prototype.slice.call(files)
-    return Promise.all(filesArray.map(fileToDataURL))
-  }
-
-  const transformPondDataIntoImages = pondData => {
-    return pondData.map(actualPondData => actualPondData.file)
-  }
-
-  const uploadImages = (pondData) => {
-    const files = transformPondDataIntoImages(pondData)
-    const images = transformFilesIntoImages(files)
-    images.then(imgsData => setPictures(imgsData))
   }
 
   return (
@@ -91,14 +70,7 @@ function MainPage() {
           </Step>
         ))}
       </Stepper>
-      <FilePond
-        files={pictures}
-        onupdatefiles={uploadImages}
-        allowMultiple={true}
-        maxFiles={250}
-        name="files"
-        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-      />
+      {renderContentAccordingStep()}
     </div>
   )
 }
