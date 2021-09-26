@@ -47,6 +47,7 @@ function MainPage() {
   }
 
   const validateStepTarget = (stepTarget) => {
+    if (stepTarget < activeStep) return true
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
         if (_isEmpty(pictures)) {
@@ -62,7 +63,7 @@ function MainPage() {
   }
 
   return (
-    <div>
+    <div className="mainContainer">
       <Stepper
         className="stepContainer"
         alternativeLabel
