@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 
 // Components
+import EditImages from 'components/EditImages'
 import SelectImages from 'components/SelectImages'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
@@ -11,6 +12,9 @@ import StepLabel from '@material-ui/core/StepLabel'
 
 // Constants
 import { MAIN_STEPS_ENUM } from 'constants/steps'
+
+// Style
+import './index.css'
 
 // Utils
 import _isEmpty from 'lodash/isEmpty'
@@ -35,6 +39,8 @@ function MainPage() {
     switch(activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
         return <SelectImages pictures={pictures} setPictures={setPictures} />
+      case MAIN_STEPS_ENUM.EDIT_IMAGES:
+        return <EditImages pictures={pictures} />
       default:
         break;
     }
@@ -58,6 +64,7 @@ function MainPage() {
   return (
     <div>
       <Stepper
+        className="stepContainer"
         alternativeLabel
         activeStep={activeStep}
         connector={<StepConnectorStyled />}>
