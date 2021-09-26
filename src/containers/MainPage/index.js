@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 // Components
 import EditImages from 'components/EditImages'
+import IncludingInformations from 'components/IncludingInformations'
 import SelectImages from 'components/SelectImages'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
@@ -26,6 +27,7 @@ function getSteps() {
 function MainPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
+  const [picturesInfo, setPicturesInfo] = useState([]);
   const steps = getSteps();
 
   const handleStep = (step) => () => {
@@ -38,9 +40,11 @@ function MainPage() {
   const renderContentAccordingStep = () => {
     switch(activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
-        return <SelectImages pictures={pictures} setPictures={setPictures} />
+        return <SelectImages pictures={pictures} setPictures={setPictures} setPicturesInfo={setPicturesInfo} />
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
         return <EditImages pictures={pictures} />
+      case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
+        return <IncludingInformations pictures={pictures} picturesInfo={picturesInfo} setPicturesInfo={setPicturesInfo} />
       default:
         break;
     }
@@ -50,11 +54,11 @@ function MainPage() {
     if (stepTarget < activeStep) return true
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
-        if (_isEmpty(pictures)) {
-          return false
-        }
+        if (_isEmpty(pictures)) return false
         return true
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
+        if (_isEmpty(pictures)) return false
+        return true
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
       default:
