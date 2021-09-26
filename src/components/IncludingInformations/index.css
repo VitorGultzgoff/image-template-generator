@@ -1,0 +1,26 @@
+.imgInfo {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.includingInfoContainer {
+  display: flex;
+  margin: 20px auto;
+  max-width: 500px;
+  width: 500px;
+}
+
+.infoImg {
+  display: flex;
+  max-width: 400px;
+  margin: auto;
+}
+
+.infoInput {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.valueContainer {
+  margin-top: 10px;
+}
