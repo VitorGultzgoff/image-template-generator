@@ -5,6 +5,9 @@ import { FilePond, registerPlugin } from 'react-filepond'
 // Utils
 import { fileToDataURL } from 'utils/file'
 
+// Styles
+import './index.css'
+
 // FilePond
 import 'filepond/dist/filepond.min.css'
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
@@ -30,12 +33,13 @@ function SelectImages({ pictures, setPictures }) {
 
   return (
     <FilePond
+      className="selectImgContainer"
       files={pictures}
       onupdatefiles={uploadImages}
       allowMultiple={true}
       maxFiles={250}
       name="files"
-      labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+      labelIdle='Arraste e solte seus arquivos ou <span class="filepond--label-action">Procure o arquivo</span>'
     />
   )
 }
