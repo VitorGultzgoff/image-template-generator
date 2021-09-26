@@ -15,7 +15,20 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 
-function SelectImages({ pictures, setPictures }) {
+function SelectImages({ pictures, setPictures, setPicturesInfo }) {
+  const setMappedPicturesInfo = (imgsData) => {
+    const picturesInfo = []
+    // May be replaced for an array create without forEach
+    imgsData.forEach(actualImg => {
+      picturesInfo.push({
+        id: null,
+        value: null
+      })
+    });
+    setPicturesInfo(picturesInfo)
+  }
+
+
   const transformFilesIntoImages = files => {
     const filesArray = Array.prototype.slice.call(files)
     return Promise.all(filesArray.map(fileToDataURL))
@@ -28,7 +41,10 @@ function SelectImages({ pictures, setPictures }) {
   const uploadImages = (pondData) => {
     const files = transformPondDataIntoImages(pondData)
     const images = transformFilesIntoImages(files)
-    images.then(imgsData => setPictures(imgsData))
+    images.then(imgsData => {
+      setPictures(imgsData)
+      setMappedPicturesInfo(imgsData)
+    })
   }
 
   return (
