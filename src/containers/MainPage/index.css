@@ -1,3 +1,8 @@
+.mainContainer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .stepContainer {
   margin-top: 15px;
 }
