@@ -1,0 +1,67 @@
+@media print {
+  .no-print { display: none }
+  .pictureGridContainer {
+    max-width: 25%;
+  }
+}
+
+
+#contentToPrint {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow: visible !important;
+  min-height: 100vh;
+}
+
+#contentToPrint::before {
+  margin-top: auto;
+}
+
+#contentToPrint::after {
+  margin-bottom: auto;
+}
+
+.pictureContainer {
+  display: flex;
+  border: 2px solid black;
+  flex: 0 0 23%;
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  justify-content: center;
+}
+
+.pictureGridContainer {
+  display: flex;
+  margin-bottom: 10px !important;
+}
+
+.pictureImg {
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
+
+.printContainer {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: center;
+}
+
+.templateContainer {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.valuesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
