@@ -21,8 +21,8 @@ function SelectImages({ pictures, setPictures, setPicturesInfo }) {
     // May be replaced for an array create without forEach
     imgsData.forEach(actualImg => {
       picturesInfo.push({
-        id: null,
-        value: null
+        id: '',
+        value: ''
       })
     });
     setPicturesInfo(picturesInfo)
