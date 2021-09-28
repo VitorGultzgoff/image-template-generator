@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 // Components
 import EditImages from 'components/EditImages'
+import GenerateTemplate from 'components/GenerateTemplate'
 import IncludingInformations from 'components/IncludingInformations'
 import SelectImages from 'components/SelectImages'
 import Stepper from '@material-ui/core/Stepper'
@@ -45,6 +46,8 @@ function MainPage() {
         return <EditImages pictures={pictures} />
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
         return <IncludingInformations pictures={pictures} picturesInfo={picturesInfo} setPicturesInfo={setPicturesInfo} />
+      case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
+        return <GenerateTemplate pictures={pictures} picturesInfo={picturesInfo} />
       default:
         break;
     }
@@ -61,6 +64,8 @@ function MainPage() {
         return true
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
+        if (_isEmpty(picturesInfo)) return false
+        return true
       default:
         break;
     }
