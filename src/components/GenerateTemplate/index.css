@@ -1,14 +1,17 @@
+@page {
+  margin-top: 12px;
+}
+
 @media print {
-  .no-print { display: none }
-  .pictureGridContainer {
-    max-width: 25%;
+  img {
+    page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
+    page-break-inside: avoid; /* or 'auto' */
   }
 }
 
-
 #contentToPrint {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
   margin-top: 20px;
   padding-left: 5px;
   padding-right: 5px;
@@ -24,44 +27,36 @@
   margin-bottom: auto;
 }
 
+.noContentInBox {
+  font-size: 0;
+  padding-bottom: 0px !important;
+}
+
 .pictureContainer {
-  display: flex;
   border: 2px solid black;
-  flex: 0 0 23%;
-  flex-wrap: wrap;
+  display: inline-block;
   padding-bottom: 5px;
   margin-bottom: 10px;
   margin-right: 5px;
-  justify-content: center;
-}
-
-.pictureGridContainer {
-  display: flex;
-  margin-bottom: 10px !important;
+  width: 160px;
 }
 
 .pictureImg {
   width: 100%;
-  object-fit: cover;
-  height: 200px;
+  /* object-fit: cover; */
+  height: 160px;
 }
 
 .printContainer {
-  display: flex;
-  flex-basis: 100%;
   justify-content: center;
 }
 
 .templateContainer {
-  display: flex;
   width: 100%;
   margin-top: 20px;
-  flex-wrap: wrap;
   justify-content: center;
 }
 
 .valuesContainer {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
 }
