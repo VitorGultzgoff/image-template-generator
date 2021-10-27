@@ -10,6 +10,7 @@ import PrintIcon from '@mui/icons-material/Print';
 
 // Style
 import './index.css'
+import classNames from 'classnames';
 
 function GenerateTemplate({ pictures, picturesInfo }) {
   const componentRef = useRef();
@@ -34,9 +35,13 @@ function GenerateTemplate({ pictures, picturesInfo }) {
           const idValue = picturesInfo[actualPictureIndex].id
           const amountValue = picturesInfo[actualPictureIndex].value
           return (
-            <div className="pictureContainer">
+            <div
+              className={
+                classNames("pictureContainer", { "noContentInBox": !idValue && !amountValue })
+              }
+            >
               <img src={actualPicture} alt={actualPictureIndex} className="pictureImg" />
-              <span className="valuesContainer">{idValue} {amountValue}</span>
+              {(idValue || amountValue) && <span className="valuesContainer">{idValue} {amountValue}</span>}
             </div>
           )
         })}
