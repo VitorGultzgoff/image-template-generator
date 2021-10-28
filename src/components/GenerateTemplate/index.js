@@ -8,6 +8,9 @@ import Button from '@mui/material/Button'
 // Icons
 import PrintIcon from '@mui/icons-material/Print';
 
+// Utils
+import { formatBRLCurrency } from 'utils/currency'
+
 // Style
 import './index.css'
 import classNames from 'classnames';
@@ -41,7 +44,9 @@ function GenerateTemplate({ pictures, picturesInfo }) {
               }
             >
               <img src={actualPicture} alt={actualPictureIndex} className="pictureImg" />
-              {(idValue || amountValue) && <span className="valuesContainer">{idValue} {amountValue}</span>}
+              {(idValue || amountValue) && (
+                <span className="valuesContainer">{idValue} {formatBRLCurrency(amountValue)}</span>
+              )}
             </div>
           )
         })}
