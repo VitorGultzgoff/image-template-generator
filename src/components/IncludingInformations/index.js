@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 // Components
 import Button from '@mui/material/Button'
+import CurrencyInput from 'components/form/CurrencyInput'
 import Grid from '@mui/material/Grid'
 import InputAdornment from '@mui/material/InputAdornment'
 import TextField from '@mui/material/TextField'
@@ -115,7 +116,8 @@ function IncludingInformations({ pictures, picturesInfo, setPicturesInfo }) {
                     <InputAdornment position="end">
                       <AttachMoneyIcon className="moneyIcon" />
                     </InputAdornment>
-                  )
+                  ),
+                  inputComponent: CurrencyInput,
                 }}
                 placeholder="Valor do produto(R$)"
                 value={amountValue}
