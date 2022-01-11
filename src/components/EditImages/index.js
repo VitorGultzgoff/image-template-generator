@@ -11,6 +11,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import CropIcon from '@mui/icons-material/Crop'
 
+// Utils
+import _clone from 'lodash/clone'
+
 // Style
 import 'react-image-crop/dist/ReactCrop.css'
 import './index.css'
@@ -27,6 +30,7 @@ function EditImages({ pictures }) {
     x: 25,
     y: 25
   });
+  const [croppedPictures, setCroppedPictures] = useState(pictures)
   const isFirstPicture = actualImgIndex <= 0
   const isLastPicture = actualImgIndex >= pictures?.length - 1
 
@@ -35,7 +39,17 @@ function EditImages({ pictures }) {
     setActualImgIndex(actualImgIndex - 1)
   }
 
-  const cropImg = () => {
+  const cropPicture = () => {
+    const { current } = previewCanvasRef
+    let pictureMapped = new Image();
+    pictureMapped.src = current.toDataURL();
+    mapCroppedPicture(actualImgIndex, pictureMapped)
+  }
+
+  const mapCroppedPicture = (pictureIndex, updatedPicture) => {
+    const mappedCroppedPictures = _clone(croppedPictures)
+    mappedCroppedPictures[pictureIndex] = updatedPicture
+    setCroppedPictures(mappedCroppedPictures)
   }
 
   const nextImg = ()=> {
@@ -48,9 +62,7 @@ function EditImages({ pictures }) {
   }, []);
 
   useEffect(() => {
-    if (!completedCrop || !previewCanvasRef.current || !genericImg.current) {
-      return;
-    }
+    if (!completedCrop || !previewCanvasRef.current || !genericImg.current) return;
 
     const image = genericImg.current;
     const canvas = previewCanvasRef.current;
@@ -78,6 +90,7 @@ function EditImages({ pictures }) {
       crop.width * scaleX,
       crop.height * scaleY
     );
+    console.log('ctx = ', ctx)
   }, [completedCrop]);
 
   return (
@@ -116,11 +129,10 @@ function EditImages({ pictures }) {
           </Grid>
           <Grid item xs={12} md={4}>
             <Button
-              disabled
               variant="contained"
               startIcon={<CropIcon />}
               color="primary"
-              onClick={cropImg}
+              onClick={cropPicture}
             >
               Recortar
             </Button>
