@@ -17,12 +17,12 @@ import LabelIcon from '@mui/icons-material/Label'
 // Styles
 import './index.css'
 
-function IncludingInformations({ pictures, picturesInfo, setPicturesInfo }) {
+function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo }) {
   const [actualImgIndex, setActualImgIndex] = useState(0)
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id)
   const [amountValue, setAmountValue] = useState(picturesInfo[actualImgIndex].value)
   const isFirstPicture = actualImgIndex <= 0
-  const isLastPicture = actualImgIndex >= pictures?.length - 1
+  const isLastPicture = actualImgIndex >= croppedPictures?.length - 1
   
   const resetValues = (indexTarget) => {
     setIdValue(picturesInfo[indexTarget].id)
@@ -59,7 +59,7 @@ function IncludingInformations({ pictures, picturesInfo, setPicturesInfo }) {
       <div className="infoContainer">
         <Grid container>
           <Grid item xs={12}>
-            <img src={pictures[actualImgIndex]} className="infoImg" alt='Img info' />
+            <img src={croppedPictures[actualImgIndex]} className="infoImg" alt='Img info' />
           </Grid>
           <div className="actionsContainer">
             <Grid container spacing={2}>
