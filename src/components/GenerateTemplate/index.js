@@ -15,7 +15,7 @@ import { formatBRLCurrency } from 'utils/currency'
 import './index.css'
 import classNames from 'classnames';
 
-function GenerateTemplate({ pictures, picturesInfo }) {
+function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const componentRef = useRef();
   return (
     <div className="templateContainer">
@@ -34,7 +34,7 @@ function GenerateTemplate({ pictures, picturesInfo }) {
         />
       </div>
       <div id="contentToPrint" ref={componentRef}>
-        {pictures.map((actualPicture, actualPictureIndex) => {
+        {croppedPictures.map((actualPicture, actualPictureIndex) => {
           const idValue = picturesInfo[actualPictureIndex].id
           const amountValue = picturesInfo[actualPictureIndex].value
           return (

@@ -28,6 +28,7 @@ function getSteps() {
 function MainPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
+  const [croppedPictures, setCroppedPictures] = useState([])
   const [picturesInfo, setPicturesInfo] = useState([]);
   const steps = getSteps();
 
@@ -43,11 +44,11 @@ function MainPage() {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
         return <SelectImages pictures={pictures} setPictures={setPictures} setPicturesInfo={setPicturesInfo} />
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
-        return <EditImages pictures={pictures} />
+        return <EditImages croppedPictures={croppedPictures} pictures={pictures} setCroppedPictures={setCroppedPictures} />
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
-        return <IncludingInformations pictures={pictures} picturesInfo={picturesInfo} setPicturesInfo={setPicturesInfo} />
+        return <IncludingInformations croppedPictures={croppedPictures} picturesInfo={picturesInfo} setPicturesInfo={setPicturesInfo} />
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
-        return <GenerateTemplate pictures={pictures} picturesInfo={picturesInfo} />
+        return <GenerateTemplate croppedPictures={croppedPictures} picturesInfo={picturesInfo} />
       default:
         break;
     }
