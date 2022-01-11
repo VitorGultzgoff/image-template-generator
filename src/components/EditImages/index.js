@@ -19,7 +19,7 @@ import { convertCanvasIntoImg } from 'utils/image'
 import 'react-image-crop/dist/ReactCrop.css'
 import './index.css'
 
-function EditImages({ pictures }) {
+function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
   const genericImg = useRef(null)
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0)
@@ -31,7 +31,6 @@ function EditImages({ pictures }) {
     x: 25,
     y: 25
   });
-  const [croppedPictures, setCroppedPictures] = useState(pictures)
   const isFirstPicture = actualPictureIndex <= 0
   const isLastPicture = actualPictureIndex >= pictures?.length - 1
 
@@ -90,7 +89,6 @@ function EditImages({ pictures }) {
       crop.width * scaleX,
       crop.height * scaleY
     );
-    console.log('ctx = ', ctx)
   }, [completedCrop]);
 
   return (
@@ -113,8 +111,6 @@ function EditImages({ pictures }) {
           }}
         />
       </div>
-
-      <img src={croppedPictures[actualPictureIndex]} alt='CROPPED' />
 
       <div className="actionsContainer">
         <Grid container spacing={2}>
