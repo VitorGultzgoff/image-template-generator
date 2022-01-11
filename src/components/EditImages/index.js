@@ -13,6 +13,7 @@ import CropIcon from '@mui/icons-material/Crop'
 
 // Utils
 import _clone from 'lodash/clone'
+import { convertCanvasIntoImg } from 'utils/image'
 
 // Style
 import 'react-image-crop/dist/ReactCrop.css'
@@ -21,7 +22,7 @@ import './index.css'
 function EditImages({ pictures }) {
   const genericImg = useRef(null)
   const previewCanvasRef = useRef(null);
-  const [actualImgIndex, setActualImgIndex] = useState(0)
+  const [actualPictureIndex, setActualPictureIndex] = useState(0)
   const [completedCrop, setCompletedCrop] = useState(null);
   const [crop, setCrop] = useState({
     unit: '%',
@@ -31,19 +32,18 @@ function EditImages({ pictures }) {
     y: 25
   });
   const [croppedPictures, setCroppedPictures] = useState(pictures)
-  const isFirstPicture = actualImgIndex <= 0
-  const isLastPicture = actualImgIndex >= pictures?.length - 1
+  const isFirstPicture = actualPictureIndex <= 0
+  const isLastPicture = actualPictureIndex >= pictures?.length - 1
 
-  const backImg = () => {
+  const backPicture = () => {
     if (isFirstPicture) return false
-    setActualImgIndex(actualImgIndex - 1)
+    setActualPictureIndex(actualPictureIndex - 1)
   }
 
   const cropPicture = () => {
     const { current } = previewCanvasRef
-    let pictureMapped = new Image();
-    pictureMapped.src = current.toDataURL();
-    mapCroppedPicture(actualImgIndex, pictureMapped)
+    const pictureMapped = convertCanvasIntoImg(current)
+    mapCroppedPicture(actualPictureIndex, pictureMapped?.src)
   }
 
   const mapCroppedPicture = (pictureIndex, updatedPicture) => {
@@ -52,9 +52,9 @@ function EditImages({ pictures }) {
     setCroppedPictures(mappedCroppedPictures)
   }
 
-  const nextImg = ()=> {
+  const nextPicture = ()=> {
     if (isLastPicture) return false
-    setActualImgIndex(actualImgIndex + 1)
+    setActualPictureIndex(actualPictureIndex + 1)
   }
 
   const onLoad = useCallback((img) => {
@@ -97,7 +97,7 @@ function EditImages({ pictures }) {
     <section id="editImgContainer">
       <div className="cropContainer">
         <ReactCrop
-          src={pictures[actualImgIndex]}
+          src={pictures[actualPictureIndex]}
           crop={crop}
           onImageLoaded={onLoad}
           onChange={(c) => setCrop(c)}
@@ -114,6 +114,8 @@ function EditImages({ pictures }) {
         />
       </div>
 
+      <img src={croppedPictures[actualPictureIndex]} alt='CROPPED' />
+
       <div className="actionsContainer">
         <Grid container spacing={2}>
           <Grid item xs={12} md={4}>
@@ -122,7 +124,7 @@ function EditImages({ pictures }) {
               variant="contained"
               startIcon={<ArrowBackIcon />}
               color="error"
-              onClick={backImg}
+              onClick={backPicture}
             >
               Anterior
             </Button>
@@ -143,7 +145,7 @@ function EditImages({ pictures }) {
               variant="contained"
               endIcon={<ArrowForwardIcon />}
               color="secondary"
-              onClick={nextImg}
+              onClick={nextPicture}
             >
               Próxima
             </Button>
