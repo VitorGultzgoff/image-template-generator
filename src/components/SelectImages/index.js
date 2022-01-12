@@ -3,6 +3,8 @@ import React from 'react'
 import { FilePond, registerPlugin } from 'react-filepond'
 
 // Utils
+import _clone from 'lodash/clone'
+import _isNil from 'lodash/isNil'
 import { fileToDataURL } from 'utils/file'
 
 // Styles
@@ -15,7 +17,19 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 
-function SelectImages({ pictures, setPictures, setPicturesInfo }) {
+function SelectImages({ croppedPictures, pictures, setCroppedPictures, setPictures, setPicturesInfo }) {
+  const mapInitialCroppedPictures = (pictures) => {
+    const basicPictures = _clone(pictures)
+    const mappedCroppedPictures = _clone(croppedPictures)
+    basicPictures.forEach((actualBasicPicture, actualBasicPictureIndex) => {
+      if (_isNil(mappedCroppedPictures[actualBasicPictureIndex])) {
+        mappedCroppedPictures[actualBasicPictureIndex] = actualBasicPicture
+      }
+    });
+    setCroppedPictures(mappedCroppedPictures)
+  }
+
+
   const setMappedPicturesInfo = (imgsData) => {
     const picturesInfo = []
     // May be replaced for an array create without forEach
@@ -43,6 +57,7 @@ function SelectImages({ pictures, setPictures, setPicturesInfo }) {
     const images = transformFilesIntoImages(files)
     images.then(imgsData => {
       setPictures(imgsData)
+      mapInitialCroppedPictures(imgsData)
       setMappedPicturesInfo(imgsData)
     })
   }
