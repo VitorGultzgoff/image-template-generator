@@ -43,6 +43,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
     const { current } = previewCanvasRef
     const pictureMapped = convertCanvasIntoImg(current)
     mapCroppedPicture(actualPictureIndex, pictureMapped?.src)
+    nextPicture()
   }
 
   const mapCroppedPicture = (pictureIndex, updatedPicture) => {
