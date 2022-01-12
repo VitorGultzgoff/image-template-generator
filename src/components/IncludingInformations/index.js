@@ -58,13 +58,14 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
     <div className="includingInfoContainer">
       <div className="infoContainer">
         <Grid container>
-          <Grid item xs={12}>
-            <img src={croppedPictures[actualImgIndex]} className="infoImg" alt='Img info' />
+          <Grid item xs={12} container>
+            <img src={croppedPictures[actualImgIndex]} className="pictureImgPreview" alt='Img info' />
           </Grid>
           <div className="actionsContainer">
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} container>
                 <Button
+                  className="btnPreviewAction"
                   disabled={isFirstPicture}
                   variant="contained"
                   startIcon={<ArrowBackIcon />}
@@ -74,12 +75,13 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                   Anterior
                 </Button>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6} container>
                 <Button
+                  className="btnPreviewAction"
                   disabled={isLastPicture}
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
-                  color="secondary"
+                  color="primary"
                   onClick={nextImg}
                 >
                   Próxima
