@@ -13,7 +13,6 @@ import CropIcon from '@mui/icons-material/Crop'
 
 // Utils
 import _clone from 'lodash/clone'
-import _isNil from 'lodash/isNil'
 import { convertCanvasIntoImg } from 'utils/image'
 
 // Style
@@ -52,15 +51,6 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
     setCroppedPictures(mappedCroppedPictures)
   }
 
-  const mapInitialCroppedPictures = () => {
-    const basicPictures = _clone(pictures)
-    const mappedCroppedPictures = _clone(croppedPictures)
-    basicPictures.forEach((actualBasicPicture, actualBasicPictureIndex) => {
-      if (_isNil(mappedCroppedPictures[actualBasicPictureIndex])) mappedCroppedPictures[actualBasicPictureIndex] = actualBasicPicture
-    });
-    setCroppedPictures(mappedCroppedPictures)
-  }
-
   const nextPicture = ()=> {
     if (isLastPicture) return false
     setActualPictureIndex(actualPictureIndex + 1)
@@ -68,10 +58,6 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
 
   const onLoad = useCallback((img) => {
     genericImg.current = img;
-  }, []);
-
-  useEffect(() => {
-    mapInitialCroppedPictures()
   }, []);
 
   useEffect(() => {
