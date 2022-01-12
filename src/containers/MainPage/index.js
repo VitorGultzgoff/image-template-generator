@@ -1,5 +1,5 @@
 // Libs
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Components
 import EditImages from "components/EditImages";
@@ -49,7 +49,6 @@ function MainPage() {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
         return (
           <SelectImages
-            croppedPictures={croppedPictures}
             pictures={pictures}
             setPictures={setPictures}
             setCroppedPictures={setCroppedPictures}
