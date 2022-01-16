@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 
-const SwitchTrack = styled("input")`
+const SwitchTrack = styled("span")`
   background-color: #bfc7cf;
   border-radius: 4px;
   width: 100%;

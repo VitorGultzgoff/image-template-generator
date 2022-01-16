@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 
-const SwitchRoot = styled("input")`
+const SwitchRoot = styled("span")`
   display: inline-block;
   position: relative;
   width: 64px;
