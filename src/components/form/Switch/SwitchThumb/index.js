@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 
-const SwitchThumb = styled("input")`
+const SwitchThumb = styled("span")`
   position: absolute;
   display: block;
   background-color: #0059B2;
