@@ -21,6 +21,14 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const componentRef = useRef();
   return (
     <div className="templateContainer">
+      <Grid container>
+        <Button variant="contained" startIcon={<ImageIcon />} color="primary">
+          JPEG
+        </Button>
+        <Button variant="contained" startIcon={<PrintIcon />} color="secondary">
+          PDF
+        </Button>
+      </Grid>
       <div className="printContainer">
         <ReactToPrint
           trigger={() => (
