@@ -5,9 +5,9 @@ import ReactToPrint from "react-to-print";
 // Components
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import Switch from '@mui/material/Switch';
 
 // Icons
-import ImageIcon from "@mui/icons-material/Image";
 import PrintIcon from "@mui/icons-material/Print";
 
 // Utils
@@ -22,12 +22,7 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
   return (
     <div className="templateContainer">
       <Grid container>
-        <Button variant="contained" startIcon={<ImageIcon />} color="primary">
-          JPEG
-        </Button>
-        <Button variant="contained" startIcon={<PrintIcon />} color="secondary">
-          PDF
-        </Button>
+        <Switch label="PDF" defaultChecked />
       </Grid>
       <div className="printContainer">
         <ReactToPrint
