@@ -23,7 +23,7 @@ const SwitchThumb = styled("span")`
   }
 
   &.checked {
-    transform: translateX(34px);
+    transform: translateX(50px);
   }
 `;
 
