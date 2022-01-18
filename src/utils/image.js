@@ -4,4 +4,10 @@ const convertCanvasIntoImg = (canvasTarget) => {
   return imgConverted;
 };
 
-export { convertCanvasIntoImg };
+const exportContentAsImg = (contentTargetId) => {
+  const elementTarget = document.getElementById(contentTargetId)
+  // Convert, adapt the container and remove all the not include references
+  return elementTarget
+}
+
+export { convertCanvasIntoImg, exportContentAsImg };
