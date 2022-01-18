@@ -1,16 +1,9 @@
 // Libs
 import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
-import clsx from "clsx";
 
 // Components
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import { useSwitch } from '@mui/base/SwitchUnstyled';
-import SwitchInput from "components/form/Switch/SwitchInput"
-import SwitchRoot from "components/form/Switch/SwitchRoot"
-import SwitchThumb from "components/form/Switch/SwitchThumb"
-import SwitchTrack from "components/form/Switch/SwitchTrack"
 
 // Icons
 import PrintIcon from "@mui/icons-material/Print";
@@ -24,23 +17,8 @@ import classNames from "classnames";
 
 function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const componentRef = useRef();
-  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
-
-  const stateClasses = {
-    checked,
-    disabled,
-    focusVisible,
-  };
   return (
     <div className="templateContainer">
-      <Grid container>
-        <SwitchRoot className={clsx(stateClasses)}>
-          <SwitchTrack>
-            <SwitchThumb className={clsx(stateClasses)} />
-          </SwitchTrack>
-          <SwitchInput {...getInputProps()} aria-label="Demo switch" />
-        </SwitchRoot>
-      </Grid>
       <div className="printContainer">
         <ReactToPrint
           trigger={() => (
