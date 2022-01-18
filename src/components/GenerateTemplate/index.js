@@ -24,14 +24,14 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const exportedFileName = "catalogo-vendas";
   return (
     <div className="templateContainer">
-      <Grid container>
+      <Grid container className="contentFlexCenter">
         <SwitchFormInput
           onChange={() =>
             exportContentAsJPEG(contentToPrintElement, exportedFileName)
           }
         />
       </Grid>
-      <Grid container className="printContainer">
+      <Grid container className="contentFlexCenter">
         <ReactToPrint
           trigger={() => (
             <Button
