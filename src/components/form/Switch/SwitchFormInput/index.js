@@ -9,7 +9,7 @@ import SwitchRoot from "components/form/Switch/SwitchRoot"
 import SwitchThumb from "components/form/Switch/SwitchThumb"
 import SwitchTrack from "components/form/Switch/SwitchTrack"
 
-export default function SwitchFormInput() {
+export default function SwitchFormInput(props) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
