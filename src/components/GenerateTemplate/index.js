@@ -4,11 +4,14 @@ import ReactToPrint from "react-to-print";
 
 // Components
 import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
+import SwitchFormInput from "components/form/Switch/SwitchFormInput";
 
 // Icons
 import PrintIcon from "@mui/icons-material/Print";
 
 // Utils
+import { exportContentAsJPEG } from "utils/image";
 import { formatBRLCurrency } from "utils/currency";
 
 // Style
@@ -17,9 +20,18 @@ import classNames from "classnames";
 
 function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const componentRef = useRef();
+  const contentToPrintElement = "contentToPrint";
+  const exportedFileName = "catalogo-vendas";
   return (
     <div className="templateContainer">
-      <div className="printContainer">
+      <Grid container>
+        <SwitchFormInput
+          onChange={() =>
+            exportContentAsJPEG(contentToPrintElement, exportedFileName)
+          }
+        />
+      </Grid>
+      <Grid container className="printContainer">
         <ReactToPrint
           trigger={() => (
             <Button
@@ -32,8 +44,8 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
           )}
           content={() => componentRef.current}
         />
-      </div>
-      <div id="contentToPrint" ref={componentRef}>
+      </Grid>
+      <div id={contentToPrintElement} ref={componentRef}>
         {croppedPictures.map((actualPicture, actualPictureIndex) => {
           const idValue = picturesInfo[actualPictureIndex].id;
           const amountValue = picturesInfo[actualPictureIndex].value;
