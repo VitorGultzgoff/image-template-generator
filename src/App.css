@@ -1,3 +1,17 @@
+.colorWhite {
+  color: #fff;
+}
+
 .contentFlexCenter {
   justify-content: center;
+}
+
+.iconAsBackground.MuiSvgIcon-root {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  height: 80%;
+  top: 10%;
+  bottom: 10%;
 }
