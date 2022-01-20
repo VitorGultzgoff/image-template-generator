@@ -8,7 +8,8 @@ const convertCanvasIntoImg = (canvasTarget) => {
 };
 
 const exportContentAsJPEG = (contentTargetId, imageName = 'generated-image') => {
-  toJpeg(document.getElementById(contentTargetId), { quality: 0.95 })
+  const elementTarget = document.getElementById(contentTargetId)
+  toJpeg(elementTarget, { quality: 0.95 })
   .then(function (dataUrl) {
     const fileType = 'jpeg'
     let link = document.createElement('a');
