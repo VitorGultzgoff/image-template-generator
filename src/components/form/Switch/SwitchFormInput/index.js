@@ -11,6 +11,7 @@ import SwitchTrack from "components/form/Switch/SwitchTrack"
 
 export default function SwitchFormInput(props) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
+  const { LeftIcon, RightIcon } = props
 
   const stateClasses = {
     checked,
@@ -20,9 +21,12 @@ export default function SwitchFormInput(props) {
   return (
     <SwitchRoot className={clsx(stateClasses)}>
       <SwitchTrack>
-        <SwitchThumb className={clsx(stateClasses)} />
+        <SwitchThumb className={clsx(stateClasses)}>
+          {LeftIcon && !checked && <LeftIcon className="colorWhite iconAsBackground" />}
+          {RightIcon && checked && <RightIcon className="colorWhite iconAsBackground" />}
+        </SwitchThumb>
       </SwitchTrack>
-      <SwitchInput {...getInputProps()} aria-label="Demo switch" />
+      <SwitchInput {...getInputProps()} aria-label="generic-switch-input" />
     </SwitchRoot>
   );
 }
