@@ -1,9 +1,21 @@
+.basicMarginBlock {
+  margin-top: 15px;
+}
+
 .colorWhite {
   color: #fff;
 }
 
 .contentFlexCenter {
   justify-content: center;
+}
+
+.flexItem {
+  display: flex;
+}
+
+.flexAlignedCenter {
+  align-items: center;
 }
 
 .iconAsBackground.MuiSvgIcon-root {
