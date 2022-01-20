@@ -1,14 +1,15 @@
 // Libs
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import ReactToPrint from "react-to-print";
 
 // Components
-import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
+import PrintAction from 'components/GenerateTemplate/PrintAction'
 import SwitchFormInput from "components/form/Switch/SwitchFormInput";
 
 // Icons
-import PrintIcon from "@mui/icons-material/Print";
+import ImageIcon from "@mui/icons-material/Image";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 // Utils
 import { exportContentAsJPEG } from "utils/image";
@@ -20,30 +21,34 @@ import classNames from "classnames";
 
 function GenerateTemplate({ croppedPictures, picturesInfo }) {
   const componentRef = useRef();
+  const [isPdfFile, setIsPdfFile] = useState(false);
   const contentToPrintElement = "contentToPrint";
   const exportedFileName = "catalogo-vendas";
+
+  const printSwitcher = () => {
+    if (isPdfFile) {
+      return (
+        <ReactToPrint
+          trigger={() => <PrintAction />}
+          content={() => componentRef.current}
+        />
+      );
+    }
+    return <PrintAction action={() => exportContentAsJPEG(contentToPrintElement, exportedFileName)} />;
+  };
+
   return (
     <div className="templateContainer">
       <Grid container className="contentFlexCenter">
         <SwitchFormInput
-          onChange={() =>
-            exportContentAsJPEG(contentToPrintElement, exportedFileName)
-          }
+          checked={isPdfFile}
+          onChange={(e) => setIsPdfFile(e?.target?.checked)}
+          LeftIcon={ImageIcon}
+          RightIcon={PictureAsPdfIcon}
         />
       </Grid>
-      <Grid container className="contentFlexCenter">
-        <ReactToPrint
-          trigger={() => (
-            <Button
-              variant="contained"
-              startIcon={<PrintIcon />}
-              color="primary"
-            >
-              Imprimir
-            </Button>
-          )}
-          content={() => componentRef.current}
-        />
+      <Grid container className="basicMarginBlock contentFlexCenter">
+        {printSwitcher()}
       </Grid>
       <div id={contentToPrintElement} ref={componentRef}>
         {croppedPictures.map((actualPicture, actualPictureIndex) => {
