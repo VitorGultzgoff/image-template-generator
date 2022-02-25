@@ -19,6 +19,12 @@
 | Import a JSON configuration to allow updates | :x: |
 | Performance handling for hundreds and thousands of images | :x: |
 | Option to minify images while import | :x: |
+| Fork project to a most generic one | :x: |
+| Optional sequential code autocomplete | :x: |
+| Update directly an item content through an icon in generated template | :x: |
+| Update directly an image through an icon in generated template | :x: |
+| Customization of the generated template style | :x: |
+| Manage lists of items saving data in real-time | :x: |
 
 ## :blue_heart: Contribute
 
