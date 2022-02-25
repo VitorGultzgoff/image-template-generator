@@ -1,9 +1,9 @@
 # Image Template Generator
 
-## Summary
+## :blue_book: Summary
 
 
-## Features
+## :scroll: Features
 |    Feature    | Status |
 | ------------- | ------ |
 | Select images by using uploader with drag & drop | :heavy_check_mark: |
@@ -16,6 +16,6 @@
 | Personalization of the product value currency mask | :x: |
 | Internationalization | :x: |
 
-## Contribute
+## :blue_heart: Contribute
 
-## License
+## :page_with_curl: License
