@@ -12,9 +12,9 @@
 | Include product value as optional information | :heavy_check_mark: |
 | Brazilian currency mask as default for product value | :heavy_check_mark: |
 | Export generate template as PDF | :heavy_check_mark: |
-| Export generate template as image(JPEG) | :X: |
-| Personalization of the product value currency mask | :X: |
-| Internationalization | :X: |
+| Export generate template as image(JPEG) | :x: |
+| Personalization of the product value currency mask | :x: |
+| Internationalization | :x: |
 
 ## Contribute
 
