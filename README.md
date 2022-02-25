@@ -15,6 +15,10 @@
 | Export generate template as image(JPEG) | :x: |
 | Personalization of the product value currency mask | :x: |
 | Internationalization | :x: |
+| Export a JSON configuration which allows future updates | :x: |
+| Import a JSON configuration to allow updates | :x: |
+| Performance handling for hundreds and thousands of images | :x: |
+| Option to minify images while import | :x: |
 
 ## :blue_heart: Contribute
 
