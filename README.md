@@ -4,9 +4,17 @@
 
 
 ## Features
-|    Feature    |  Status  |
-| ------------- | -------- |
-| Generate a dynamic template | :heavy_check_mark: |
+|    Feature    | Status |
+| ------------- | ------ |
+| Select images by using uploader with drag & drop | :heavy_check_mark: |
+| Crop images sequently | :heavy_check_mark: |
+| Include product identifier as optional information | :heavy_check_mark: |
+| Include product value as optional information | :heavy_check_mark: |
+| Brazilian currency mask as default for product value | :heavy_check_mark: |
+| Export generate template as PDF | :heavy_check_mark: |
+| Export generate template as image(JPEG) | :X: |
+| Personalization of the product value currency mask | :X: |
+| Internationalization | :X: |
 
 ## Contribute
 
