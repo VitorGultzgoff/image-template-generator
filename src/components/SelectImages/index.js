@@ -2,6 +2,10 @@
 import React from "react";
 import { FilePond, registerPlugin } from "react-filepond";
 
+// Components
+import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
+
 // Utils
 import { fileToDataURL } from "utils/file";
 
@@ -21,7 +25,6 @@ function SelectImages({
   setPictures,
   setPicturesInfo,
 }) {
-
   const setMappedPicturesInfo = (imgsData) => {
     const picturesInfo = [];
     // May be replaced for an array create without forEach
@@ -48,21 +51,43 @@ function SelectImages({
     const images = transformFilesIntoImages(files);
     images.then((imgsData) => {
       setPictures(imgsData);
-      setCroppedPictures(imgsData)
+      setCroppedPictures(imgsData);
       setMappedPicturesInfo(imgsData);
     });
   };
 
   return (
-    <FilePond
-      className="selectImgContainer"
-      files={pictures}
-      onupdatefiles={uploadImages}
-      allowMultiple={true}
-      maxFiles={250}
-      name="files"
-      labelIdle='Arraste e solte seus arquivos ou <span class="filepond--label-action">Procure o arquivo</span>'
-    />
+    <>
+      <div className="">
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6} container>
+            <Button
+              variant="contained"
+              color="error"
+            >
+              Incluir dados
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={6} container>
+            <Button
+              variant="contained"
+              color="primary"
+            >
+              Não incluir dados
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
+      <FilePond
+        className="selectImgContainer"
+        files={pictures}
+        onupdatefiles={uploadImages}
+        allowMultiple={true}
+        maxFiles={250}
+        name="files"
+        labelIdle='Arraste e solte seus arquivos ou <span class="filepond--label-action">Procure o arquivo</span>'
+      />
+    </>
   );
 }
 
