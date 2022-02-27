@@ -1,7 +1,7 @@
 # Image Template Generator
 
 ## :blue_book: Summary
-
+:dart: Goal: Small/medium stores which have a strong connection with *frequently customers* need **quickly create product catalogs**, once that the **pattern would be the same** and there's no artistic work involved in all of them, this tool would easily **simplify this process**. 
 
 ## :scroll: Features
 |    Feature    | Status |
@@ -25,6 +25,9 @@
 | Update directly an image through an icon in generated template | :x: |
 | Customization of the generated template style | :x: |
 | Manage lists of items saving data in real-time | :x: |
+| Unit tests | :x: |
+| UX tests | :x: |
+| Share the generated template and/or data into cloud | :x: |
 
 ## :blue_heart: Contribute
 
