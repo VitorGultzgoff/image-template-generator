@@ -28,6 +28,8 @@
 | Unit tests | :x: |
 | UX tests | :x: |
 | Share the generated template and/or data into cloud | :x: |
+| Manage products data in real-time | :x: |
+| Unifying and preview of items in a dashboard | :x: |
 
 ## :blue_heart: Contribute
 
