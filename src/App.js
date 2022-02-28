@@ -1,6 +1,9 @@
 // Containers
 import MainPage from 'containers/MainPage'
 
+// Libs
+import './i18n'
+
 // Styles
 import './App.css';
 
