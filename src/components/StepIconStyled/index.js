@@ -3,10 +3,10 @@ import React from 'react'
 import clsx from 'clsx';
 
 // Icons
-import CropIcon from '@material-ui/icons/Crop';
-import InfoIcon from '@material-ui/icons/Info';
-import PanToolIcon from '@material-ui/icons/PanTool';
-import WorkIcon from '@material-ui/icons/Work';
+import CropIcon from '@mui/icons-material/Crop';
+import InfoIcon from '@mui/icons-material/Info';
+import PanToolIcon from '@mui/icons-material/PanTool';
+import WorkIcon from '@mui/icons-material/Work';
 
 // Styling
 import { makeStyles } from '@material-ui/styles';
