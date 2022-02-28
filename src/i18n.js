@@ -12,6 +12,9 @@ const resources = {
         edit_images: "Edit images"
       },
       general: {
+        crop: "Crop",
+        nextFeminine: "Next",
+        previous: "Previous",
         print: "Print"
       },
       image_template_generator: "Image template generator",
@@ -32,6 +35,9 @@ const resources = {
         edit_images: "Edição de imagens"
       },
       general: {
+        crop: "Recortar",
+        nextFeminine: "Próxima",
+        previous: "Anterior",
         print: "Imprimir"
       },
       image_template_generator: "Gerador de templates de imagem",

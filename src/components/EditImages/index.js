@@ -11,6 +11,9 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import CropIcon from '@mui/icons-material/Crop'
 
+// Libs
+import { useTranslation } from 'react-i18next';
+
 // Utils
 import _clone from 'lodash/clone'
 import { convertCanvasIntoImg } from 'utils/image'
@@ -20,6 +23,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 import './index.css'
 
 function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
+  const { t } = useTranslation()
   const genericImg = useRef(null)
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0)
@@ -123,7 +127,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               color="error"
               onClick={backPicture}
             >
-              Anterior
+              {t('general.previous')}
             </Button>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -133,7 +137,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               color="primary"
               onClick={cropPicture}
             >
-              Recortar
+              {t('general.crop')}
             </Button>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -144,7 +148,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               color="secondary"
               onClick={nextPicture}
             >
-              Próxima
+              {t('general.nextFeminine')}
             </Button>
           </Grid>
         </Grid>
