@@ -14,10 +14,14 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import LabelIcon from '@mui/icons-material/Label'
 
+// Libs
+import { useTranslation } from 'react-i18next';
+
 // Styles
 import './index.css'
 
 function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo }) {
+  const { t } = useTranslation()
   const [actualImgIndex, setActualImgIndex] = useState(0)
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id)
   const [amountValue, setAmountValue] = useState(picturesInfo[actualImgIndex].value)
@@ -72,7 +76,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                   color="error"
                   onClick={backImg}
                 >
-                  Anterior
+                  {t('general.previous')}
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} container>
@@ -84,7 +88,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                   color="primary"
                   onClick={nextImg}
                 >
-                  Próxima
+                  {t('general.nextImage')}
                 </Button>
               </Grid>
             </Grid>
@@ -94,7 +98,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
               <TextField
                 className="infoInput"
                 required
-                label="Identificador do produto"
+                label={t('general.product.identifier')}
                 onChange={(e) => setIdValue(e.target.value)}
                 InputProps={{
                   startAdornment: (
@@ -103,7 +107,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                     </InputAdornment>
                   )
                 }}
-                placeholder="Identificador do produto"
+                placeholder={t('general.product.identifier')}
                 value={idValue}
               />
             </Grid>
@@ -111,7 +115,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
               <TextField
                 className="infoInput"
                 required
-                label="Valor do produto(R$)"
+                label={`${t('general.product.value')}(${t('currency.brl.main_ticker')})`}
                 onChange={(e) => setAmountValue(e.target.value)}
                 InputProps={{
                   startAdornment: (
@@ -121,7 +125,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                   ),
                   inputComponent: CurrencyInput,
                 }}
-                placeholder="Valor do produto(R$)"
+                placeholder={`${t('general.product.value')}(${t('currency.brl.main_ticker')})`}
                 value={amountValue}
               />
             </Grid>
