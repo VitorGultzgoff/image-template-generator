@@ -2,10 +2,6 @@
 import React from "react";
 import { FilePond, registerPlugin } from "react-filepond";
 
-// Components
-import Button from "@mui/material/Button";
-import { Grid } from "@mui/material";
-
 // Libs
 import { useTranslation } from 'react-i18next';
 
@@ -63,26 +59,6 @@ function SelectImages({
 
   return (
     <>
-      <div className="">
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6} container>
-            <Button
-              variant="contained"
-              color="error"
-            >
-              Incluir dados
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6} container>
-            <Button
-              variant="contained"
-              color="primary"
-            >
-              Não incluir dados
-            </Button>
-          </Grid>
-        </Grid>
-      </div>
       <FilePond
         className="selectImgContainer"
         files={pictures}
