@@ -5,19 +5,31 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "image_template_generator": "Image template generator",
+      functionalities: {
+        template_generation: "Template generation",
+        including_information: "Including information",
+        select_images: "Selection of images",
+        edit_images: "Edit images"
+      },
       general: {
         print: "Print"
-      }
+      },
+      image_template_generator: "Image template generator",
     }
   },
   pt_br: {
     translation: {
-      "image_template_generator": "Gerador de templates de imagem"
+      functionalities: {
+        template_generation: "Geração do template",
+        including_information: "Inclusão de informações",
+        select_images: "Seleção de imagens",
+        edit_images: "Edição de imagens"
+      },
+      general: {
+        print: "Imprimir"
+      },
+      image_template_generator: "Gerador de templates de imagem"
     },
-    general: {
-      print: "Imprimir"
-    }
   }
 };
 

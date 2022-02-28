@@ -15,27 +15,32 @@ import StepLabel from "@material-ui/core/StepLabel";
 // Constants
 import { MAIN_STEPS_ENUM } from "constants/steps";
 
+// Libs
+import { useTranslation } from 'react-i18next';
+
 // Style
 import "./index.css";
 
 // Utils
 import _isEmpty from "lodash/isEmpty";
 
-function getSteps() {
+function getSteps(t) {
+  const functionalities_prefix = "functionalities."
   return [
-    "Seleção de imagens",
-    "Edição de imagens",
-    "Inclusão de informações",
-    "Geração do template",
+    t(`${functionalities_prefix}select_images`),
+    t(`${functionalities_prefix}edit_images`),
+    t(`${functionalities_prefix}including_information`),
+    t(`${functionalities_prefix}template_generation`),
   ];
 }
 
 function MainPage() {
+  const { t } = useTranslation()
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
   const [croppedPictures, setCroppedPictures] = useState([]);
   const [picturesInfo, setPicturesInfo] = useState([]);
-  const steps = getSteps();
+  const steps = getSteps(t);
 
   const handleStep = (step) => () => {
     if (activeStep === step) return false;
