@@ -5,17 +5,18 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "image_template_generator": "Image template generator"
-    }
-  },
-  fr: {
-    translation: {
-      "image_template_generator": "Générateur de modèles d'images"
+      "image_template_generator": "Image template generator",
+      general: {
+        print: "Print"
+      }
     }
   },
   pt_br: {
     translation: {
       "image_template_generator": "Gerador de templates de imagem"
+    },
+    general: {
+      print: "Imprimir"
     }
   }
 };
