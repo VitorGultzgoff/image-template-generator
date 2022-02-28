@@ -13,7 +13,7 @@ const resources = {
       },
       general: {
         crop: "Crop",
-        nextFeminine: "Next",
+        nextImage: "Next",
         previous: "Previous",
         print: "Print"
       },
@@ -36,7 +36,7 @@ const resources = {
       },
       general: {
         crop: "Recortar",
-        nextFeminine: "Próxima",
+        nextImage: "Próxima",
         previous: "Anterior",
         print: "Imprimir"
       },

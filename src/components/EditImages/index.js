@@ -148,7 +148,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               color="secondary"
               onClick={nextPicture}
             >
-              {t('general.nextFeminine')}
+              {t('general.nextImage')}
             </Button>
           </Grid>
         </Grid>
