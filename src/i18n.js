@@ -15,6 +15,12 @@ const resources = {
         print: "Print"
       },
       image_template_generator: "Image template generator",
+      select_images: {
+        uploader: {
+          description: "Drag & Drop your files or",
+          complemented_description: "Search the file"
+        }
+      }
     }
   },
   pt_br: {
@@ -28,7 +34,13 @@ const resources = {
       general: {
         print: "Imprimir"
       },
-      image_template_generator: "Gerador de templates de imagem"
+      image_template_generator: "Gerador de templates de imagem",
+      select_images: {
+        uploader: {
+          description: "Arraste e solte seus arquivos ou",
+          complemented_description: "Procure o arquivo"
+        }
+      }
     },
   }
 };

@@ -6,6 +6,9 @@ import { FilePond, registerPlugin } from "react-filepond";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
 
+// Libs
+import { useTranslation } from 'react-i18next';
+
 // Utils
 import { fileToDataURL } from "utils/file";
 
@@ -25,6 +28,8 @@ function SelectImages({
   setPictures,
   setPicturesInfo,
 }) {
+  const { t } = useTranslation()
+
   const setMappedPicturesInfo = (imgsData) => {
     const picturesInfo = [];
     // May be replaced for an array create without forEach
@@ -85,7 +90,7 @@ function SelectImages({
         allowMultiple={true}
         maxFiles={250}
         name="files"
-        labelIdle='Arraste e solte seus arquivos ou <span class="filepond--label-action">Procure o arquivo</span>'
+        labelIdle={`${t('select_images.uploader.description')} <span class="filepond--label-action">${t('select_images.uploader.description')}</span>`}
       />
     </>
   );
