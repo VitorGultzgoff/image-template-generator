@@ -17,7 +17,7 @@ export default function AppToolbar() {
   const { t } = useTranslation();
 
   return (
-    <AppBar>
+    <AppBar position="fixed">
       <Toolbar>
         <IconButton
           size="large"
