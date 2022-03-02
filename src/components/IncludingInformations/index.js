@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import CurrencyInput from "components/form/CurrencyInput";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
 
 // Icons
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -16,11 +15,17 @@ import LabelIcon from "@mui/icons-material/Label";
 // Libs
 import { useTranslation } from "react-i18next";
 
+// Utils
+import { containerHorizontalCenterAligned } from 'utils/style'
+
 // Styles
 import {
   IncludingInfoActionBtn,
   NextActionContainer,
   PreviousActionContainer,
+  ProductInfoContainer,
+  ProductInfoInput,
+  ProductInfoInputValueContainer
 } from "./styles";
 import "./index.css";
 
@@ -117,9 +122,9 @@ function IncludingInformations({
               </NextActionContainer>
             </Grid>
           </Grid>
-          <div className="imgInfo">
-            <Grid item xs={12}>
-              <TextField
+          <ProductInfoContainer container>
+            <Grid item xs={12} {...containerHorizontalCenterAligned}>
+              <ProductInfoInput
                 className="infoInput"
                 required
                 label={t("general.product.identifier")}
@@ -135,8 +140,8 @@ function IncludingInformations({
                 value={idValue}
               />
             </Grid>
-            <Grid item xs={12} className="genericInfoContainer">
-              <TextField
+            <ProductInfoInputValueContainer item xs={12} {...containerHorizontalCenterAligned}>
+              <ProductInfoInput
                 className="infoInput"
                 required
                 label={`${t("general.product.value")}(${t(
@@ -156,8 +161,8 @@ function IncludingInformations({
                 )})`}
                 value={amountValue}
               />
-            </Grid>
-          </div>
+            </ProductInfoInputValueContainer>
+          </ProductInfoContainer>
         </Grid>
       </div>
     </div>
