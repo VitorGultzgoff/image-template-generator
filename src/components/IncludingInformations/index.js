@@ -1,97 +1,120 @@
 // Libs
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 // Components
-import Button from '@mui/material/Button'
-import CurrencyInput from 'components/form/CurrencyInput'
-import Grid from '@mui/material/Grid'
-import InputAdornment from '@mui/material/InputAdornment'
-import TextField from '@mui/material/TextField'
+import CurrencyInput from "components/form/CurrencyInput";
+import Grid from "@mui/material/Grid";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 
 // Icons
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
-import LabelIcon from '@mui/icons-material/Label'
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import LabelIcon from "@mui/icons-material/Label";
 
 // Libs
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 // Styles
-import { CarouselActions } from './styles'
-import './index.css'
+import {
+  IncludingInfoActionBtn,
+  NextActionContainer,
+  PreviousActionContainer,
+} from "./styles";
+import "./index.css";
 
-function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo }) {
-  const { t } = useTranslation()
-  const [actualImgIndex, setActualImgIndex] = useState(0)
-  const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id)
-  const [amountValue, setAmountValue] = useState(picturesInfo[actualImgIndex].value)
-  const isFirstPicture = actualImgIndex <= 0
-  const isLastPicture = actualImgIndex >= croppedPictures?.length - 1
-  
+function IncludingInformations({
+  croppedPictures,
+  picturesInfo,
+  setPicturesInfo,
+}) {
+  const { t } = useTranslation();
+  const [actualImgIndex, setActualImgIndex] = useState(0);
+  const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
+  const [amountValue, setAmountValue] = useState(
+    picturesInfo[actualImgIndex].value
+  );
+  const isFirstPicture = actualImgIndex <= 0;
+  const isLastPicture = actualImgIndex >= croppedPictures?.length - 1;
+
   const resetValues = (indexTarget) => {
-    setIdValue(picturesInfo[indexTarget].id)
-    setAmountValue(picturesInfo[indexTarget].value)
-  }
+    setIdValue(picturesInfo[indexTarget].id);
+    setAmountValue(picturesInfo[indexTarget].value);
+  };
 
   const backImg = () => {
-    if (isFirstPicture) return false
-    const indexTarget = actualImgIndex - 1
-    setActualImgIndex(indexTarget)
-    resetValues(actualImgIndex - 1)
-  }
+    if (isFirstPicture) return false;
+    const indexTarget = actualImgIndex - 1;
+    setActualImgIndex(indexTarget);
+    resetValues(actualImgIndex - 1);
+  };
 
   const nextImg = () => {
-    if (isLastPicture) return false
-    const indexTarget = actualImgIndex + 1
-    setActualImgIndex(indexTarget)
-    resetValues(indexTarget)
-  }
+    if (isLastPicture) return false;
+    const indexTarget = actualImgIndex + 1;
+    setActualImgIndex(indexTarget);
+    resetValues(indexTarget);
+  };
 
   const updatePicturesInfo = () => {
-    let picturesInfoMapped = picturesInfo
-    picturesInfoMapped[actualImgIndex].id = idValue
-    picturesInfoMapped[actualImgIndex].value = amountValue
-    setPicturesInfo(picturesInfoMapped)
-  }
+    let picturesInfoMapped = picturesInfo;
+    picturesInfoMapped[actualImgIndex].id = idValue;
+    picturesInfoMapped[actualImgIndex].value = amountValue;
+    setPicturesInfo(picturesInfoMapped);
+  };
 
   useEffect(() => {
-    updatePicturesInfo()
-  }, [idValue, amountValue])
+    updatePicturesInfo();
+  }, [idValue, amountValue]);
 
   return (
     <div className="includingInfoContainer">
       <div className="infoContainer">
         <Grid container className="actionsContainer">
           <Grid item xs={12} container>
-            <img src={croppedPictures[actualImgIndex]} className="pictureImgPreview" alt='Img info' />
+            <img
+              src={croppedPictures[actualImgIndex]}
+              className="pictureImgPreview"
+              alt="Img info"
+            />
           </Grid>
           <Grid container>
             <Grid container spacing={2}>
-              <CarouselActions item xs={12} md={6} container justifyContent={{ xs: "center", md: "end" }}>
-                <Button
-                  className="btnPreviewAction"
+              <PreviousActionContainer
+                item
+                xs={12}
+                md={6}
+                container
+                justifyContent={{ xs: "center", md: "end" }}
+              >
+                <IncludingInfoActionBtn
                   disabled={isFirstPicture}
                   variant="contained"
                   startIcon={<ArrowBackIcon />}
                   color="error"
                   onClick={backImg}
                 >
-                  {t('general.previous')}
-                </Button>
-              </CarouselActions>
-              <CarouselActions item xs={12} md={6} container justifyContent={{ xs: "center", md: "start" }}>
-                <Button
-                  className="btnPreviewAction"
+                  {t("general.previous")}
+                </IncludingInfoActionBtn>
+              </PreviousActionContainer>
+              <NextActionContainer
+                item
+                xs={12}
+                md={6}
+                container
+                justifyContent={{ xs: "center", md: "start" }}
+              >
+                <IncludingInfoActionBtn
                   disabled={isLastPicture}
                   variant="contained"
                   endIcon={<ArrowForwardIcon />}
                   color="primary"
                   onClick={nextImg}
                 >
-                  {t('general.nextImage')}
-                </Button>
-              </CarouselActions>
+                  {t("general.nextImage")}
+                </IncludingInfoActionBtn>
+              </NextActionContainer>
             </Grid>
           </Grid>
           <div className="imgInfo">
@@ -99,16 +122,16 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
               <TextField
                 className="infoInput"
                 required
-                label={t('general.product.identifier')}
+                label={t("general.product.identifier")}
                 onChange={(e) => setIdValue(e.target.value)}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="end">
                       <LabelIcon color="primary" />
                     </InputAdornment>
-                  )
+                  ),
                 }}
-                placeholder={t('general.product.identifier')}
+                placeholder={t("general.product.identifier")}
                 value={idValue}
               />
             </Grid>
@@ -116,7 +139,9 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
               <TextField
                 className="infoInput"
                 required
-                label={`${t('general.product.value')}(${t('currency.brl.main_ticker')})`}
+                label={`${t("general.product.value")}(${t(
+                  "currency.brl.main_ticker"
+                )})`}
                 onChange={(e) => setAmountValue(e.target.value)}
                 InputProps={{
                   startAdornment: (
@@ -126,7 +151,9 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                   ),
                   inputComponent: CurrencyInput,
                 }}
-                placeholder={`${t('general.product.value')}(${t('currency.brl.main_ticker')})`}
+                placeholder={`${t("general.product.value")}(${t(
+                  "currency.brl.main_ticker"
+                )})`}
                 value={amountValue}
               />
             </Grid>
@@ -134,7 +161,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
         </Grid>
       </div>
     </div>
-  )
+  );
 }
 
-export default IncludingInformations
+export default IncludingInformations;
