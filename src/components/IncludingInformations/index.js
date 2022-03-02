@@ -18,6 +18,7 @@ import LabelIcon from '@mui/icons-material/Label'
 import { useTranslation } from 'react-i18next';
 
 // Styles
+import { CarouselActions } from './styles'
 import './index.css'
 
 function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo }) {
@@ -67,7 +68,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
           </Grid>
           <Grid container>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6} container>
+              <CarouselActions item xs={12} md={6} container justifyContent={{ xs: "center", md: "end" }}>
                 <Button
                   className="btnPreviewAction"
                   disabled={isFirstPicture}
@@ -78,8 +79,8 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                 >
                   {t('general.previous')}
                 </Button>
-              </Grid>
-              <Grid item xs={12} md={6} container>
+              </CarouselActions>
+              <CarouselActions item xs={12} md={6} container justifyContent={{ xs: "center", md: "start" }}>
                 <Button
                   className="btnPreviewAction"
                   disabled={isLastPicture}
@@ -90,7 +91,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                 >
                   {t('general.nextImage')}
                 </Button>
-              </Grid>
+              </CarouselActions>
             </Grid>
           </Grid>
           <div className="imgInfo">
