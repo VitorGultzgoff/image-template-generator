@@ -119,7 +119,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
 
       <div className="actionsContainer">
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} container justifyContent="center">
             <Button
               disabled={isFirstPicture}
               variant="contained"
@@ -130,7 +130,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.previous')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} container justifyContent="center">
             <Button
               variant="contained"
               startIcon={<CropIcon />}
@@ -140,7 +140,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.crop')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} container justifyContent="center">
             <Button
               disabled={isLastPicture}
               variant="contained"
