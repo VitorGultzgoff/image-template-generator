@@ -1,7 +1,9 @@
 .mainContainer {
+  display: flex;
   margin-top: 80px;
   padding-left: 10px;
   padding-right: 10px;
+  width: 100%;
 }
 
 .stepContainer {

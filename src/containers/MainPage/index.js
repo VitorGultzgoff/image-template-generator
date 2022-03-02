@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // Components
 import EditImages from "components/EditImages";
 import GenerateTemplate from "components/GenerateTemplate";
+import Grid from "@mui/material/Grid";
 import IncludingInformations from "components/IncludingInformations";
 import SelectImages from "components/SelectImages";
 import Stepper from "@material-ui/core/Stepper";
@@ -16,7 +17,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import { MAIN_STEPS_ENUM } from "constants/steps";
 
 // Libs
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 // Style
 import "./index.css";
@@ -25,7 +26,7 @@ import "./index.css";
 import _isEmpty from "lodash/isEmpty";
 
 function getSteps(t) {
-  const functionalities_prefix = "functionalities."
+  const functionalities_prefix = "functionalities.";
   return [
     t(`${functionalities_prefix}select_images`),
     t(`${functionalities_prefix}edit_images`),
@@ -35,7 +36,7 @@ function getSteps(t) {
 }
 
 function MainPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
   const [croppedPictures, setCroppedPictures] = useState([]);
@@ -108,19 +109,27 @@ function MainPage() {
 
   return (
     <div className="mainContainer">
-      <Stepper
-        className="stepContainer"
-        alternativeLabel
-        activeStep={activeStep}
-        connector={<StepConnectorStyled />}
-      >
-        {steps.map((label, stepIndex) => (
-          <Step key={label} onClick={handleStep(stepIndex)}>
-            <StepLabel StepIconComponent={StepIconStyled}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      {renderContentAccordingStep()}
+      <Grid container>
+        <Grid item xs={12}>
+          <Stepper
+            className="stepContainer"
+            alternativeLabel
+            activeStep={activeStep}
+            connector={<StepConnectorStyled />}
+          >
+            {steps.map((label, stepIndex) => (
+              <Step key={label} onClick={handleStep(stepIndex)}>
+                <StepLabel StepIconComponent={StepIconStyled}>
+                  {label}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Grid>
+        <Grid item xs={12}>
+          {renderContentAccordingStep()}
+        </Grid>
+      </Grid>
     </div>
   );
 }
