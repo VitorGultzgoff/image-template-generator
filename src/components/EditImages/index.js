@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 // Utils
 import _clone from 'lodash/clone'
 import { convertCanvasIntoImg } from 'utils/image'
+import { containerHorizontalCenterAligned } from 'utils/style'
 
 // Style
 import 'react-image-crop/dist/ReactCrop.css'
@@ -96,8 +97,6 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
     );
   }, [completedCrop]);
 
-  const containersCenterAligned = { container: true,justifyContent: "center"}
-
   return (
     <section id="editImgContainer">
       <div className="cropContainer">
@@ -121,7 +120,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
 
       <div className="actionsContainer">
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4} {...containersCenterAligned}>
+          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
             <Button
               disabled={isFirstPicture}
               variant="contained"
@@ -132,7 +131,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.previous')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4} {...containersCenterAligned}>
+          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
             <Button
               variant="contained"
               startIcon={<CropIcon />}
@@ -142,7 +141,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.crop')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4} {...containersCenterAligned}>
+          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
             <Button
               disabled={isLastPicture}
               variant="contained"
