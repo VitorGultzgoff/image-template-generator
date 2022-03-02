@@ -61,11 +61,11 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
   return (
     <div className="includingInfoContainer">
       <div className="infoContainer">
-        <Grid container>
+        <Grid container className="actionsContainer">
           <Grid item xs={12} container>
             <img src={croppedPictures[actualImgIndex]} className="pictureImgPreview" alt='Img info' />
           </Grid>
-          <div className="actionsContainer">
+          <Grid container>
             <Grid container spacing={2}>
               <Grid item xs={12} md={6} container>
                 <Button
@@ -92,7 +92,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                 </Button>
               </Grid>
             </Grid>
-          </div>
+          </Grid>
           <div className="imgInfo">
             <Grid item xs={12}>
               <TextField
@@ -111,7 +111,7 @@ function IncludingInformations({ croppedPictures, picturesInfo, setPicturesInfo 
                 value={idValue}
               />
             </Grid>
-            <Grid item xs={12} className="valueContainer">
+            <Grid item xs={12} className="genericInfoContainer">
               <TextField
                 className="infoInput"
                 required

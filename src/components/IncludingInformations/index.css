@@ -1,12 +1,5 @@
-@media (max-width: 900px) {
-  .btnPreviewAction.MuiButton-root {
-    width: 100%;
-    max-width: 200px;
-  }
-}
-
-.btnPreviewAction.MuiButton-root {
-  margin: auto;
+.genericInfoContainer {
+  margin-top: 10px !important;
 }
 
 .imgInfo {
@@ -48,8 +41,4 @@
   width: 160px;
   height: 160px;
   margin: auto;
-}
-
-.valueContainer {
-  margin-top: 10px !important;
 }
