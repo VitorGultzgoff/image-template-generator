@@ -96,6 +96,8 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
     );
   }, [completedCrop]);
 
+  const containersCenterAligned = { container: true,justifyContent: "center"}
+
   return (
     <section id="editImgContainer">
       <div className="cropContainer">
@@ -119,7 +121,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
 
       <div className="actionsContainer">
         <Grid container spacing={2}>
-          <Grid item xs={12} md={4} container justifyContent="center">
+          <Grid item xs={12} md={4} {...containersCenterAligned}>
             <Button
               disabled={isFirstPicture}
               variant="contained"
@@ -130,7 +132,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.previous')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4} container justifyContent="center">
+          <Grid item xs={12} md={4} {...containersCenterAligned}>
             <Button
               variant="contained"
               startIcon={<CropIcon />}
@@ -140,7 +142,7 @@ function EditImages({ pictures, croppedPictures, setCroppedPictures }) {
               {t('general.crop')}
             </Button>
           </Grid>
-          <Grid item xs={12} md={4} container justifyContent="center">
+          <Grid item xs={12} md={4} {...containersCenterAligned}>
             <Button
               disabled={isLastPicture}
               variant="contained"
