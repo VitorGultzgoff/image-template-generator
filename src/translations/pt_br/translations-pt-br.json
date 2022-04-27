@@ -1,0 +1,30 @@
+{
+  "currency": {
+    "brl": {
+      "main_ticker": "R$"
+    }
+  },
+  "functionalities": {
+    "template_generation": "Geração do template",
+    "including_information": "Inclusão de informações",
+    "select_images": "Seleção de imagens",
+    "edit_images": "Edição de imagens"
+  },
+  "general": {
+    "crop": "Recortar",
+    "nextImage": "Próxima",
+    "previous": "Anterior",
+    "print": "Imprimir",
+    "product": {
+      "identifier": "Identificador do produto",
+      "value": "Valor do produto"
+    }
+  },
+  "image_template_generator": "Gerador de templates de imagem",
+  "select_images": {
+    "uploader": {
+      "description": "Arraste e solte seus arquivos ou",
+      "complemented_description": "Procure o arquivo"
+    }
+  }
+}

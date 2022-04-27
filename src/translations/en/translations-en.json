@@ -1,0 +1,30 @@
+{
+  "currency": {
+    "brl": {
+      "main_ticker": "R$"
+    }
+  },
+  "functionalities": {
+    "template_generation": "Template generation",
+    "including_information": "Including information",
+    "select_images": "Selection of images",
+    "edit_images": "Edit images"
+  },
+  "general": {
+    "crop": "Crop",
+    "nextImage": "Next",
+    "previous": "Previous",
+    "print": "Print",
+    "product": {
+      "identifier": "Product identifier",
+      "value": "Product value"
+    }
+  },
+  "image_template_generator": "Image template generator",
+  "select_images": {
+    "uploader": {
+      "description": "Drag & Drop your files or",
+      "complemented_description": "Search the file"
+    }
+  }
+}
