@@ -7,11 +7,14 @@ import IconButton from "@mui/material/IconButton";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+// Constants
+import { LANGUAGES } from "constants/i18n"
+
 // Icons
 import LanguageIcon from '@mui/icons-material/Language';
 
 // Utils
-import { LANGUAGES, switchLanguage } from "utils/i18n"
+import { switchLanguage } from "utils/i18n"
 
 export default function MenuLanguages() {
   const [anchorLangs, setAnchorLang] = useState(null);
