@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 // Components
 import AppBar from "@mui/material/AppBar";
-import MenuLanguages from "components/MenuLanguages"
+import MenuLanguages from "components/MenuLanguages";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
