@@ -4,12 +4,15 @@ import ReactToPrint from "react-to-print";
 
 // Components
 import { Grid } from "@mui/material";
-import PrintAction from 'components/GenerateTemplate/PrintAction'
+import PrintAction from "components/GenerateTemplate/PrintAction";
 import SwitchFormInput from "components/form/Switch/SwitchFormInput";
 
 // Icons
 import ImageIcon from "@mui/icons-material/Image";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+
+// Models
+import { IPictureInformations } from "models/picture/picture.model";
 
 // Utils
 import { exportContentAsJPEG } from "utils/image";
@@ -20,17 +23,25 @@ import { exportDataAsJSON } from "utils/file";
 import "./index.css";
 import classNames from "classnames";
 
-function GenerateTemplate({ croppedPictures, picturesInfo }) {
-  const componentRef = useRef();
+type GenerateTemplateProps = {
+  croppedPictures: string[];
+  picturesInfo: IPictureInformations[];
+};
+
+function GenerateTemplate({
+  croppedPictures,
+  picturesInfo,
+}: GenerateTemplateProps) {
+  const componentRef = useRef<HTMLDivElement>(null);
   const [isPdfFile, setIsPdfFile] = useState(false);
   const contentToPrintElement = "contentToPrint";
   const exportedFileName = "catalogo-vendas";
-  const exportedJSONData = { croppedPictures, picturesInfo }
+  const exportedJSONData = { croppedPictures, picturesInfo };
 
   const exportAllImgData = () => {
-    exportContentAsJPEG(contentToPrintElement, exportedFileName)
-    exportDataAsJSON(exportedJSONData, exportedFileName)
-  }
+    exportContentAsJPEG(contentToPrintElement, exportedFileName);
+    exportDataAsJSON(exportedJSONData, exportedFileName);
+  };
 
   const printSwitcher = () => {
     if (isPdfFile) {
@@ -50,7 +61,9 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
       <Grid container className="contentFlexCenter">
         <SwitchFormInput
           checked={isPdfFile}
-          onChange={(e) => setIsPdfFile(e?.target?.checked)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setIsPdfFile(e?.target?.checked)
+          }
           LeftIcon={ImageIcon}
           RightIcon={PictureAsPdfIcon}
         />
@@ -70,7 +83,7 @@ function GenerateTemplate({ croppedPictures, picturesInfo }) {
             >
               <img
                 src={actualPicture}
-                alt={actualPictureIndex}
+                alt={`${actualPictureIndex} of the template`}
                 className="pictureImg"
               />
               {(idValue || amountValue) && (
