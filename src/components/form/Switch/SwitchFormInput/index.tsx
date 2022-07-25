@@ -9,16 +9,15 @@ import SwitchRoot from "components/form/Switch/SwitchRoot";
 import SwitchThumb from "components/form/Switch/SwitchThumb";
 import SwitchTrack from "components/form/Switch/SwitchTrack";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material";
+import { InputProps, SvgIconTypeMap } from "@mui/material";
 
-type SwitchFormInputProps = {
+interface ISwitchFormInputProps extends InputProps {
   checked: boolean;
-  disabled: boolean;
-  focusVisible: boolean;
   LeftIcon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
   RightIcon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-};
-export default function SwitchFormInput(props: SwitchFormInputProps) {
+}
+
+export default function SwitchFormInput(props: ISwitchFormInputProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
   const { LeftIcon, RightIcon } = props;
 
