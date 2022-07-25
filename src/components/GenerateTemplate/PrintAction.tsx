@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 type PrintActionProps = {
   action?: () => void;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export default function PrintAction({ action, onClick }: PrintActionProps) {
