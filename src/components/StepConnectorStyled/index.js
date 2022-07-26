@@ -1,31 +1,28 @@
-// Libs
-import StepConnector from '@material-ui/core/StepConnector';
+// Components
+import { StepConnector, styled } from "@mui/material";
 
-// Styles
-import { withStyles } from '@material-ui/styles';
-
-const StepConnectorStyled = withStyles({
+const StepConnectorStyled = styled({
   alternativeLabel: {
     top: 22,
   },
   active: {
-    '& $line': {
+    "& $line": {
       backgroundImage:
-        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
   completed: {
-    '& $line': {
+    "& $line": {
       backgroundImage:
-        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+        "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
   line: {
     height: 3,
     border: 0,
-    backgroundColor: '#eaeaf0',
+    backgroundColor: "#eaeaf0",
     borderRadius: 1,
   },
 })(StepConnector);
 
-export default StepConnectorStyled
+export default StepConnectorStyled;

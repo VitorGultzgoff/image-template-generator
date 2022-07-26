@@ -1,36 +1,36 @@
 // Libs
-import React from 'react'
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 
 // Icons
-import CropIcon from '@mui/icons-material/Crop';
-import InfoIcon from '@mui/icons-material/Info';
-import PanToolIcon from '@mui/icons-material/PanTool';
-import WorkIcon from '@mui/icons-material/Work';
+import CropIcon from "@mui/icons-material/Crop";
+import InfoIcon from "@mui/icons-material/Info";
+import PanToolIcon from "@mui/icons-material/PanTool";
+import WorkIcon from "@mui/icons-material/Work";
 
 // Styling
-import { makeStyles } from '@material-ui/styles';
+import { styled } from "@mui/material";
 
-const useStepIconStyles = makeStyles({
+const useStepIconStyles = styled({
   root: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
     zIndex: 1,
-    color: '#fff',
+    color: "#fff",
     width: 50,
     height: 50,
-    display: 'flex',
-    borderRadius: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    borderRadius: "50%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   active: {
     backgroundImage:
-      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
   },
   completed: {
     backgroundImage:
-      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+      "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
   },
 });
 
@@ -57,4 +57,4 @@ function StepIconStyled(props) {
   );
 }
 
-export default StepIconStyled
+export default StepIconStyled;

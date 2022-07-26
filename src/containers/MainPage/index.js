@@ -7,12 +7,9 @@ import GenerateTemplate from "components/GenerateTemplate";
 import Grid from "@mui/material/Grid";
 import IncludingInformations from "components/IncludingInformations";
 import SelectImages from "components/SelectImages";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
 import StepConnectorStyled from "components/StepConnectorStyled";
 import StepIconStyled from "components/StepIconStyled";
-import StepLabel from "@material-ui/core/StepLabel";
-
+import { Step, StepLabel, Stepper } from "@mui/material";
 // Constants
 import { MAIN_STEPS_ENUM } from "constants/steps";
 

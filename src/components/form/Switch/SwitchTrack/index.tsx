@@ -1,4 +1,4 @@
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 
 const SwitchTrack = styled("span")`
   background-color: #bfc7cf;

@@ -1,9 +1,9 @@
-import { styled } from "@mui/system";
+import { styled } from "@mui/material";
 
 const SwitchThumb = styled("span")`
   position: absolute;
   display: block;
-  background-color: #0059B2;
+  background-color: #0059b2;
   width: 30px;
   height: 100%;
   border-radius: 8px;
