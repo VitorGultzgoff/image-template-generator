@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import styled from "styled-components";
 
 const SwitchInput = styled("input")`
   position: absolute;

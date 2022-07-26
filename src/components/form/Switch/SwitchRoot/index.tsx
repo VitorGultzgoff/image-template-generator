@@ -1,4 +1,4 @@
-import { styled } from "@mui/system";
+import styled from "styled-components";
 
 const SwitchRoot = styled("span")`
   display: inline-block;

@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import styled from "styled-components";
 
 const SwitchThumb = styled("span")`
   position: absolute;
