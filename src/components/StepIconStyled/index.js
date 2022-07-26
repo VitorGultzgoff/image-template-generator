@@ -1,6 +1,5 @@
 // Libs
 import React from "react";
-import clsx from "clsx";
 
 // Icons
 import CropIcon from "@mui/icons-material/Crop";
@@ -11,7 +10,7 @@ import WorkIcon from "@mui/icons-material/Work";
 // Styling
 import { styled } from "@mui/material";
 
-const useStepIconStyles = styled({
+const StyledContainer = styled("div")({
   root: {
     backgroundColor: "#ccc",
     zIndex: 1,
@@ -35,9 +34,6 @@ const useStepIconStyles = styled({
 });
 
 function StepIconStyled(props) {
-  const classes = useStepIconStyles();
-  const { active, completed } = props;
-
   const icons = {
     1: <PanToolIcon />,
     2: <CropIcon />,
@@ -45,16 +41,7 @@ function StepIconStyled(props) {
     4: <WorkIcon />,
   };
 
-  return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-        [classes.completed]: completed,
-      })}
-    >
-      {icons[String(props.icon)]}
-    </div>
-  );
+  return <StyledContainer>{icons[String(props.icon)]}</StyledContainer>;
 }
 
 export default StepIconStyled;

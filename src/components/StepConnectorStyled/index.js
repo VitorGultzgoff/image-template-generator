@@ -1,7 +1,7 @@
 // Components
 import { StepConnector, styled } from "@mui/material";
 
-const StepConnectorStyled = styled({
+const StepConnectorStyled = styled(StepConnector)({
   alternativeLabel: {
     top: 22,
   },
@@ -23,6 +23,6 @@ const StepConnectorStyled = styled({
     backgroundColor: "#eaeaf0",
     borderRadius: 1,
   },
-})(StepConnector);
+});
 
 export default StepConnectorStyled;
