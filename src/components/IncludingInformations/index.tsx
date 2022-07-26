@@ -15,8 +15,11 @@ import LabelIcon from "@mui/icons-material/Label";
 // Libs
 import { useTranslation } from "react-i18next";
 
+// Models
+import { IPictureInformations } from "models/picture/picture.model";
+
 // Utils
-import { containerHorizontalCenterAligned } from 'utils/style'
+import { containerHorizontalCenterAligned } from "utils/style";
 
 // Styles
 import {
@@ -25,15 +28,21 @@ import {
   PreviousActionContainer,
   ProductInfoContainer,
   ProductInfoInput,
-  ProductInfoInputValueContainer
+  ProductInfoInputValueContainer,
 } from "./styles";
 import "./index.css";
+
+type IncludingInformationsProps = {
+  croppedPictures: string[];
+  picturesInfo: IPictureInformations[];
+  setPicturesInfo: (picturesInfo: IPictureInformations[]) => void;
+};
 
 function IncludingInformations({
   croppedPictures,
   picturesInfo,
   setPicturesInfo,
-}) {
+}: IncludingInformationsProps) {
   const { t } = useTranslation();
   const [actualImgIndex, setActualImgIndex] = useState(0);
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
@@ -43,7 +52,7 @@ function IncludingInformations({
   const isFirstPicture = actualImgIndex <= 0;
   const isLastPicture = actualImgIndex >= croppedPictures?.length - 1;
 
-  const resetValues = (indexTarget) => {
+  const resetValues = (indexTarget: number) => {
     setIdValue(picturesInfo[indexTarget].id);
     setAmountValue(picturesInfo[indexTarget].value);
   };
@@ -53,6 +62,7 @@ function IncludingInformations({
     const indexTarget = actualImgIndex - 1;
     setActualImgIndex(indexTarget);
     resetValues(actualImgIndex - 1);
+    return true;
   };
 
   const nextImg = () => {
@@ -60,6 +70,7 @@ function IncludingInformations({
     const indexTarget = actualImgIndex + 1;
     setActualImgIndex(indexTarget);
     resetValues(indexTarget);
+    return true;
   };
 
   const updatePicturesInfo = () => {
@@ -128,7 +139,9 @@ function IncludingInformations({
                 className="infoInput"
                 required
                 label={t("general.product.identifier")}
-                onChange={(e) => setIdValue(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setIdValue(parseInt(e?.target?.value))
+                }
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="end">
@@ -140,14 +153,20 @@ function IncludingInformations({
                 value={idValue}
               />
             </Grid>
-            <ProductInfoInputValueContainer item xs={12} {...containerHorizontalCenterAligned}>
+            <ProductInfoInputValueContainer
+              item
+              xs={12}
+              {...containerHorizontalCenterAligned}
+            >
               <ProductInfoInput
                 className="infoInput"
                 required
                 label={`${t("general.product.value")}(${t(
                   "currency.brl.main_ticker"
                 )})`}
-                onChange={(e) => setAmountValue(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setAmountValue(parseFloat(e?.target?.value))
+                }
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="end">
