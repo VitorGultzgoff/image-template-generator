@@ -1,35 +1,33 @@
 // Libs
-import ReactCountryFlag from "react-country-flag"
+import ReactCountryFlag from "react-country-flag";
 import React, { useState } from "react";
 
 // Components
-import IconButton from "@mui/material/IconButton";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { IconButton, Menu, MenuItem } from "@mui/material";
 
 // Constants
-import { LANGUAGES } from "constants/i18n"
+import { LANGUAGES } from "constants/i18n";
 
 // Icons
-import LanguageIcon from '@mui/icons-material/Language';
+import LanguageIcon from "@mui/icons-material/Language";
 
 // Utils
-import { switchLanguage } from "utils/i18n"
+import { switchLanguage } from "utils/i18n";
 
 export default function MenuLanguages() {
-  const [anchorLangs, setAnchorLang] = useState(null);
-  
-  const switchGlobalLanguage = (event, lang) => {
-    switchLanguage(lang)
-    closeMenuLanguagesMenu(event)
-  }
+  const [anchorLangs, setAnchorLang] = useState<HTMLElement | null>(null);
 
-  const switchMenuLanguages = (event) => {
+  const switchGlobalLanguage = (lang: string) => {
+    switchLanguage(lang);
+    closeMenuLanguagesMenu();
+  };
+
+  const switchMenuLanguages = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorLang(event?.currentTarget);
   };
 
-  const closeMenuLanguagesMenu = (event) => {
-    setAnchorLang(null)
+  const closeMenuLanguagesMenu = () => {
+    setAnchorLang(null);
   };
 
   return (
@@ -39,7 +37,7 @@ export default function MenuLanguages() {
         aria-label="account of current user"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        onClick={switchMenuLanguages}
+        onClick={() => switchMenuLanguages}
         color="inherit"
       >
         <LanguageIcon />
@@ -57,12 +55,13 @@ export default function MenuLanguages() {
           horizontal: "right",
         }}
         open={Boolean(anchorLangs)}
-        onClose={closeMenuLanguagesMenu}
       >
-        <MenuItem onClick={(e) => switchGlobalLanguage(e, LANGUAGES.PORTUGUESE_BRAZIL)}>
+        <MenuItem
+          onClick={() => switchGlobalLanguage(LANGUAGES.PORTUGUESE_BRAZIL)}
+        >
           <ReactCountryFlag countryCode="BR" />
         </MenuItem>
-        <MenuItem onClick={(e) => switchGlobalLanguage(e, LANGUAGES.ENGLISH)}>
+        <MenuItem onClick={() => switchGlobalLanguage(LANGUAGES.ENGLISH)}>
           <ReactCountryFlag countryCode="US" />
         </MenuItem>
       </Menu>
