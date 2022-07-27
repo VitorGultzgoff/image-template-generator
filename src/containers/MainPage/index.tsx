@@ -10,8 +10,12 @@ import SelectImages from "components/SelectImages";
 import StepConnectorStyled from "components/StepConnectorStyled";
 import StepIconStyled from "components/StepIconStyled";
 import { Step, StepLabel, Stepper } from "@mui/material";
+
 // Constants
 import { MAIN_STEPS_ENUM } from "constants/steps";
+
+// Models
+import { IPictureInformations } from "models/picture/picture.model";
 
 // Libs
 import { useTranslation } from "react-i18next";
@@ -22,29 +26,29 @@ import "./index.css";
 // Utils
 import _isEmpty from "lodash/isEmpty";
 
-function getSteps(t) {
-  const functionalities_prefix = "functionalities.";
-  return [
-    t(`${functionalities_prefix}select_images`),
-    t(`${functionalities_prefix}edit_images`),
-    t(`${functionalities_prefix}including_information`),
-    t(`${functionalities_prefix}template_generation`),
-  ];
-}
-
 function MainPage() {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
-  const [croppedPictures, setCroppedPictures] = useState([]);
-  const [picturesInfo, setPicturesInfo] = useState([]);
-  const steps = getSteps(t);
+  const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
+  const [picturesInfo, setPicturesInfo] = useState<IPictureInformations[]>([]);
+  const getSteps = () => {
+    const functionalities_prefix = "functionalities.";
+    return [
+      t(`${functionalities_prefix}select_images`),
+      t(`${functionalities_prefix}edit_images`),
+      t(`${functionalities_prefix}including_information`),
+      t(`${functionalities_prefix}template_generation`),
+    ];
+  };
+  const steps = getSteps();
 
-  const handleStep = (step) => () => {
+  const handleStep = (step: number) => () => {
     if (activeStep === step) return false;
     const isValid = validateStepTarget(step);
-    if (!isValid) return;
+    if (!isValid) return false;
     setActiveStep(step);
+    return true;
   };
 
   const renderContentAccordingStep = () => {
@@ -84,9 +88,10 @@ function MainPage() {
       default:
         break;
     }
+    return null;
   };
 
-  const validateStepTarget = (stepTarget) => {
+  const validateStepTarget = (stepTarget: number) => {
     if (stepTarget < activeStep) return true;
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
@@ -102,6 +107,7 @@ function MainPage() {
       default:
         break;
     }
+    return false;
   };
 
   return (
