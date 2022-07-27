@@ -8,7 +8,8 @@ import PanToolIcon from "@mui/icons-material/PanTool";
 import WorkIcon from "@mui/icons-material/Work";
 
 // Styling
-import { styled } from "@mui/material";
+import { StepIconProps, styled } from "@mui/material";
+import { isNil } from "lodash";
 
 const StyledContainer = styled("div")({
   root: {
@@ -33,7 +34,7 @@ const StyledContainer = styled("div")({
   },
 });
 
-function StepIconStyled(props) {
+function StepIconStyled(props: StepIconProps) {
   const icons = {
     1: <PanToolIcon />,
     2: <CropIcon />,
@@ -41,7 +42,10 @@ function StepIconStyled(props) {
     4: <WorkIcon />,
   };
 
-  return <StyledContainer>{icons[String(props.icon)]}</StyledContainer>;
+  if (isNil(props?.icon)) return;
+  const iconStr = parseInt(props?.icon.toString());
+
+  return <StyledContainer>{icons[iconStr]}</StyledContainer>;
 }
 
 export default StepIconStyled;
