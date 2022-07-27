@@ -18,11 +18,11 @@ import { useTranslation } from "react-i18next";
 import _clone from "lodash/clone";
 import { convertCanvasIntoImg } from "utils/image";
 import { containerHorizontalCenterAligned } from "utils/style";
+import isNil from "lodash/isNil";
 
 // Style
 import "react-image-crop/dist/ReactCrop.css";
 import "./index.css";
-import isNil from "lodash/isNil";
 
 interface IEditImagesProps {
   pictures: string[];
@@ -52,6 +52,7 @@ const EditImages = ({
 
   const cropPicture = () => {
     const { current } = previewCanvasRef;
+    if (isNil(current)) return;
     const pictureMapped = convertCanvasIntoImg(current);
     mapCroppedPicture(actualPictureIndex, pictureMapped?.src);
     nextPicture();
