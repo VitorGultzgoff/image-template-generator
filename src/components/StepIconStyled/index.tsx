@@ -45,7 +45,9 @@ function StepIconStyled(props: StepIconProps) {
   if (isNil(props?.icon)) return;
   const iconStr = parseInt(props?.icon.toString());
 
-  return <StyledContainer>{icons[iconStr]}</StyledContainer>;
+  return (
+    <StyledContainer>{icons[iconStr as keyof typeof icons]}</StyledContainer>
+  );
 }
 
 export default StepIconStyled;
