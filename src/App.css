@@ -14,14 +14,6 @@
   justify-content: center;
 }
 
-.flexItem {
-  display: flex;
-}
-
-.flexAlignedCenter {
-  align-items: center;
-}
-
 .iconAsBackground.MuiSvgIcon-root {
   position: absolute;
   width: 80%;
