@@ -1,5 +1,6 @@
 // Libs
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import NumberFormat from "react-number-format";
 
 // Components
 import CurrencyInput from "components/form/CurrencyInput";
@@ -73,16 +74,16 @@ function IncludingInformations({
     return true;
   };
 
-  const updatePicturesInfo = () => {
+  const updatePicturesInfo = useCallback(() => {
     let picturesInfoMapped = picturesInfo;
     picturesInfoMapped[actualImgIndex].id = idValue;
     picturesInfoMapped[actualImgIndex].value = amountValue;
     setPicturesInfo(picturesInfoMapped);
-  };
+  }, [actualImgIndex, amountValue, picturesInfo, idValue, setPicturesInfo]);
 
   useEffect(() => {
     updatePicturesInfo();
-  }, [idValue, amountValue]);
+  }, [idValue, amountValue, updatePicturesInfo]);
 
   return (
     <div className="includingInfoContainer">
@@ -174,6 +175,9 @@ function IncludingInformations({
                     </InputAdornment>
                   ),
                   inputComponent: CurrencyInput,
+                  inputProps: {
+                    component: NumberFormat,
+                  },
                 }}
                 placeholder={`${t("general.product.value")}(${t(
                   "currency.brl.main_ticker"
