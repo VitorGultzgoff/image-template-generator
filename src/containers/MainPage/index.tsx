@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import EditImages from "components/EditImages";
 import GenerateTemplate from "components/GenerateTemplate";
 import Grid from "@mui/material/Grid";
-import IncludingInformations from "components/IncludingInformations";
+import IncludingInformation from "components/IncludingInformation";
 import SelectImages from "components/SelectImages";
 import StepConnectorStyled from "components/StepConnectorStyled";
 import StepIconStyled from "components/StepIconStyled";
@@ -15,7 +15,7 @@ import { Step, StepLabel, Stepper } from "@mui/material";
 import { MAIN_STEPS_ENUM } from "constants/steps";
 
 // Models
-import { IPictureInformations } from "models/picture/picture.model";
+import { IPictureInformation } from "models/picture/picture.model";
 
 // Libs
 import { useTranslation } from "react-i18next";
@@ -31,7 +31,7 @@ function MainPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [pictures, setPictures] = useState([]);
   const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
-  const [picturesInfo, setPicturesInfo] = useState<IPictureInformations[]>([]);
+  const [picturesInfo, setPicturesInfo] = useState<IPictureInformation[]>([]);
   const getSteps = () => {
     const functionalities_prefix = "functionalities.";
     return [
@@ -70,9 +70,9 @@ function MainPage() {
             setCroppedPictures={setCroppedPictures}
           />
         );
-      case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
+      case MAIN_STEPS_ENUM.INCLUDE_INFORMATION:
         return (
-          <IncludingInformations
+          <IncludingInformation
             croppedPictures={croppedPictures}
             picturesInfo={picturesInfo}
             setPicturesInfo={setPicturesInfo}
@@ -100,7 +100,7 @@ function MainPage() {
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
         if (_isEmpty(pictures)) return false;
         return true;
-      case MAIN_STEPS_ENUM.INCLUDE_INFORMATIONS:
+      case MAIN_STEPS_ENUM.INCLUDE_INFORMATION:
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
         if (_isEmpty(picturesInfo)) return false;
         return true;

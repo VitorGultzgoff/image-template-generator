@@ -17,7 +17,7 @@ import LabelIcon from "@mui/icons-material/Label";
 import { useTranslation } from "react-i18next";
 
 // Models
-import { IPictureInformations } from "models/picture/picture.model";
+import { IPictureInformation } from "models/picture/picture.model";
 
 // Utils
 import { containerHorizontalCenterAligned } from "utils/style";
@@ -33,17 +33,17 @@ import {
 } from "./styles";
 import "./index.css";
 
-type IncludingInformationsProps = {
+type IncludingInformationProps = {
   croppedPictures: string[];
-  picturesInfo: IPictureInformations[];
-  setPicturesInfo: (picturesInfo: IPictureInformations[]) => void;
+  picturesInfo: IPictureInformation[];
+  setPicturesInfo: (picturesInfo: IPictureInformation[]) => void;
 };
 
-function IncludingInformations({
+function IncludingInformation({
   croppedPictures,
   picturesInfo,
   setPicturesInfo,
-}: IncludingInformationsProps) {
+}: IncludingInformationProps) {
   const { t } = useTranslation();
   const [actualImgIndex, setActualImgIndex] = useState(0);
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
@@ -192,4 +192,4 @@ function IncludingInformations({
   );
 }
 
-export default IncludingInformations;
+export default IncludingInformation;

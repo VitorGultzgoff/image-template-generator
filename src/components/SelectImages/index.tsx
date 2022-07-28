@@ -6,7 +6,7 @@ import { FilePond, registerPlugin } from "react-filepond";
 import { useTranslation } from "react-i18next";
 
 // Models
-import { IPictureInformations } from "models/picture/picture.model";
+import { IPictureInformation } from "models/picture/picture.model";
 
 // Utils
 import { fileToDataURL } from "utils/file";
@@ -27,7 +27,7 @@ type SelectImagesProps = {
   pictures: string[];
   setCroppedPictures: (croppedPictures: string[]) => void;
   setPictures: (pictures: string[]) => void;
-  setPicturesInfo: (picturesInfo: IPictureInformations[]) => void;
+  setPicturesInfo: (picturesInfo: IPictureInformation[]) => void;
 };
 
 function SelectImages({
@@ -39,7 +39,7 @@ function SelectImages({
   const { t } = useTranslation();
 
   const setMappedPicturesInfo = (imgsData: Blob[]) => {
-    const picturesInfo: IPictureInformations[] = [];
+    const picturesInfo: IPictureInformation[] = [];
     // May be replaced for an array create without forEach
     imgsData.forEach((actualImg) => {
       picturesInfo.push({

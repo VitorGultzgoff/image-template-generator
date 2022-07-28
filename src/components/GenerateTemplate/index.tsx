@@ -12,7 +12,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
 // Models
-import { IPictureInformations } from "models/picture/picture.model";
+import { IPictureInformation } from "models/picture/picture.model";
 
 // Utils
 import { exportContentAsJPEG } from "utils/image";
@@ -25,7 +25,7 @@ import classNames from "classnames";
 
 type GenerateTemplateProps = {
   croppedPictures: string[];
-  picturesInfo: IPictureInformations[];
+  picturesInfo: IPictureInformation[];
 };
 
 function GenerateTemplate({
