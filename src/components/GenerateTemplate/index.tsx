@@ -11,9 +11,6 @@ import SwitchFormInput from "components/form/Switch/SwitchFormInput";
 import ImageIcon from "@mui/icons-material/Image";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 
-// Models
-import { IPictureInformation } from "models/picture/picture.model";
-
 // Utils
 import { exportContentAsJPEG } from "utils/image";
 import { formatBRLCurrency } from "utils/currency";
@@ -22,16 +19,14 @@ import { exportDataAsJSON } from "utils/file";
 // Style
 import "./index.css";
 import classNames from "classnames";
+import { usePictures } from "hooks/usePictures";
 
 type GenerateTemplateProps = {
   croppedPictures: string[];
-  picturesInfo: IPictureInformation[];
 };
 
-function GenerateTemplate({
-  croppedPictures,
-  picturesInfo,
-}: GenerateTemplateProps) {
+function GenerateTemplate({ croppedPictures }: GenerateTemplateProps) {
+  const { picturesInfo } = usePictures();
   const componentRef = useRef<HTMLDivElement>(null);
   const [isPdfFile, setIsPdfFile] = useState(false);
   const contentToPrintElement = "contentToPrint";
