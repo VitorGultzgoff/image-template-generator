@@ -25,17 +25,9 @@ import "react-image-crop/dist/ReactCrop.css";
 import "./index.css";
 import { usePictures } from "hooks/usePictures";
 
-interface IEditImagesProps {
-  croppedPictures: string[];
-  setCroppedPictures: (croppedPictures: string[]) => void;
-}
-
-const EditImages = ({
-  croppedPictures,
-  setCroppedPictures,
-}: IEditImagesProps) => {
+const EditImages = () => {
   const { t } = useTranslation();
-  const { pictures } = usePictures();
+  const { croppedPictures, pictures, setCroppedPictures } = usePictures();
   const genericImg = useRef(null);
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0);

@@ -30,7 +30,6 @@ function MainPage() {
   const { t } = useTranslation();
   const { pictures, picturesInfo } = usePictures();
   const [activeStep, setActiveStep] = useState(0);
-  const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
   const getSteps = () => {
     const functionalities_prefix = "functionalities.";
     return [
@@ -53,18 +52,13 @@ function MainPage() {
   const renderContentAccordingStep = () => {
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
-        return <SelectImages setCroppedPictures={setCroppedPictures} />;
+        return <SelectImages />;
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
-        return (
-          <EditImages
-            croppedPictures={croppedPictures}
-            setCroppedPictures={setCroppedPictures}
-          />
-        );
+        return <EditImages />;
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATION:
-        return <IncludingInformation croppedPictures={croppedPictures} />;
+        return <IncludingInformation />;
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
-        return <GenerateTemplate croppedPictures={croppedPictures} />;
+        return <GenerateTemplate />;
       default:
         break;
     }

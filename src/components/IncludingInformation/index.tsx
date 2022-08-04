@@ -31,13 +31,9 @@ import {
 } from "./styles";
 import "./index.css";
 
-type IncludingInformationProps = {
-  croppedPictures: string[];
-};
-
-function IncludingInformation({ croppedPictures }: IncludingInformationProps) {
+function IncludingInformation() {
   const { t } = useTranslation();
-  const { picturesInfo, setPicturesInfo } = usePictures();
+  const { croppedPictures, picturesInfo, setPicturesInfo } = usePictures();
   const [actualImgIndex, setActualImgIndex] = useState(0);
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
   const [amountValue, setAmountValue] = useState(

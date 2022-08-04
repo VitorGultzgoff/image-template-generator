@@ -23,14 +23,10 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { ActualFileObject, FilePondFile } from "filepond";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-type SelectImagesProps = {
-  setCroppedPictures: (croppedPictures: string[]) => void;
-};
-
-function SelectImages({ setCroppedPictures }: SelectImagesProps) {
+function SelectImages() {
   const { t } = useTranslation();
   const { setPicturesInfo } = usePictures();
-  const { pictures, setPictures } = usePictures();
+  const { pictures, setCroppedPictures, setPictures } = usePictures();
 
   const setMappedPicturesInfo = (imgsData: Blob[]) => {
     const picturesInfo: IPictureInformation[] = [];

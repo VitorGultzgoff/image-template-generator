@@ -21,12 +21,8 @@ import "./index.css";
 import classNames from "classnames";
 import { usePictures } from "hooks/usePictures";
 
-type GenerateTemplateProps = {
-  croppedPictures: string[];
-};
-
-function GenerateTemplate({ croppedPictures }: GenerateTemplateProps) {
-  const { picturesInfo } = usePictures();
+function GenerateTemplate() {
+  const { croppedPictures, picturesInfo } = usePictures();
   const componentRef = useRef<HTMLDivElement>(null);
   const [isPdfFile, setIsPdfFile] = useState(false);
   const contentToPrintElement = "contentToPrint";
