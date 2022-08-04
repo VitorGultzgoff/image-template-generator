@@ -4,6 +4,9 @@ import AppToolbar from "components/AppToolbar";
 // Containers
 import MainPage from "containers/MainPage";
 
+// Hooks
+import { UsePicturesProvider } from "hooks/usePictures";
+
 // Libs
 import "./i18n";
 
@@ -14,7 +17,9 @@ function App() {
   return (
     <div className="App">
       <AppToolbar />
-      <MainPage />
+      <UsePicturesProvider>
+        <MainPage />
+      </UsePicturesProvider>
     </div>
   );
 }
