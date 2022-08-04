@@ -1,9 +1,10 @@
 // Libs
 import React from "react";
 import { FilePond, registerPlugin } from "react-filepond";
-
-// Libs
 import { useTranslation } from "react-i18next";
+
+// Hooks
+import { usePictures } from "hooks/usePictures";
 
 // Models
 import { IPictureInformation } from "models/picture/picture.model";
@@ -23,20 +24,13 @@ import { ActualFileObject, FilePondFile } from "filepond";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 type SelectImagesProps = {
-  croppedPictures: string[];
-  pictures: string[];
   setCroppedPictures: (croppedPictures: string[]) => void;
-  setPictures: (pictures: string[]) => void;
-  setPicturesInfo: (picturesInfo: IPictureInformation[]) => void;
 };
 
-function SelectImages({
-  pictures,
-  setCroppedPictures,
-  setPictures,
-  setPicturesInfo,
-}: SelectImagesProps) {
+function SelectImages({ setCroppedPictures }: SelectImagesProps) {
   const { t } = useTranslation();
+  const { setPicturesInfo } = usePictures();
+  const { pictures, setPictures } = usePictures();
 
   const setMappedPicturesInfo = (imgsData: Blob[]) => {
     const picturesInfo: IPictureInformation[] = [];
