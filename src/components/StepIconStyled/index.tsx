@@ -42,7 +42,7 @@ function StepIconStyled(props: StepIconProps) {
     4: <WorkIcon />,
   };
 
-  if (isNil(props?.icon)) return;
+  if (isNil(props?.icon)) return <StyledContainer />;
   const iconStr = parseInt(props?.icon.toString());
 
   return (
