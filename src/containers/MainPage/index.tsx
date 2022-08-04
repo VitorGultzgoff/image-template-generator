@@ -14,8 +14,8 @@ import { Step, StepLabel, Stepper } from "@mui/material";
 // Constants
 import { MAIN_STEPS_ENUM } from "constants/steps";
 
-// Models
-import { IPictureInformation } from "models/picture/picture.model";
+// Hooks
+import { usePictures } from "hooks/usePictures";
 
 // Libs
 import { useTranslation } from "react-i18next";
@@ -28,10 +28,9 @@ import _isEmpty from "lodash/isEmpty";
 
 function MainPage() {
   const { t } = useTranslation();
+  const { pictures, picturesInfo } = usePictures();
   const [activeStep, setActiveStep] = useState(0);
-  const [pictures, setPictures] = useState([]);
   const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
-  const [picturesInfo, setPicturesInfo] = useState<IPictureInformation[]>([]);
   const getSteps = () => {
     const functionalities_prefix = "functionalities.";
     return [
@@ -54,37 +53,18 @@ function MainPage() {
   const renderContentAccordingStep = () => {
     switch (activeStep) {
       case MAIN_STEPS_ENUM.SELECT_IMAGES:
-        return (
-          <SelectImages
-            pictures={pictures}
-            setPictures={setPictures}
-            setCroppedPictures={setCroppedPictures}
-            setPicturesInfo={setPicturesInfo}
-          />
-        );
+        return <SelectImages setCroppedPictures={setCroppedPictures} />;
       case MAIN_STEPS_ENUM.EDIT_IMAGES:
         return (
           <EditImages
             croppedPictures={croppedPictures}
-            pictures={pictures}
             setCroppedPictures={setCroppedPictures}
           />
         );
       case MAIN_STEPS_ENUM.INCLUDE_INFORMATION:
-        return (
-          <IncludingInformation
-            croppedPictures={croppedPictures}
-            picturesInfo={picturesInfo}
-            setPicturesInfo={setPicturesInfo}
-          />
-        );
+        return <IncludingInformation croppedPictures={croppedPictures} />;
       case MAIN_STEPS_ENUM.GENERATE_TEMPLATE:
-        return (
-          <GenerateTemplate
-            croppedPictures={croppedPictures}
-            picturesInfo={picturesInfo}
-          />
-        );
+        return <GenerateTemplate croppedPictures={croppedPictures} />;
       default:
         break;
     }
