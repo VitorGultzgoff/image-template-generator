@@ -9,6 +9,8 @@ interface IPicturesContextData {
   setPictures: (pictures: string[]) => void;
   picturesInfo: IPictureInformation[];
   setPicturesInfo: (picturesInfo: IPictureInformation[]) => void;
+  croppedPictures: string[];
+  setCroppedPictures: (croppedPictures: string[]) => void;
 }
 
 // Context
@@ -18,17 +20,20 @@ const PicturesContext = createContext<IPicturesContextData>(
 
 // Provider
 const UsePicturesProvider: React.FC = ({ children }) => {
+  const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
   const [pictures, setPictures] = useState<string[]>([]);
   const [picturesInfo, setPicturesInfo] = useState<IPictureInformation[]>([]);
 
   const value = useMemo(
     () => ({
+      croppedPictures,
+      setCroppedPictures,
       pictures,
       setPictures,
       picturesInfo,
       setPicturesInfo,
     }),
-    [pictures, picturesInfo]
+    [croppedPictures, pictures, picturesInfo]
   );
 
   return (
