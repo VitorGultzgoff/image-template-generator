@@ -1,23 +1,21 @@
 // Libs
 import React, { useCallback, useEffect, useState } from "react";
 import NumberFormat from "react-number-format";
+import { useTranslation } from "react-i18next";
 
 // Components
 import CurrencyInput from "components/form/CurrencyInput";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
 
+// Hooks
+import { usePictures } from "hooks/usePictures";
+
 // Icons
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import LabelIcon from "@mui/icons-material/Label";
-
-// Libs
-import { useTranslation } from "react-i18next";
-
-// Models
-import { IPictureInformation } from "models/picture/picture.model";
 
 // Utils
 import { containerHorizontalCenterAligned } from "utils/style";
@@ -35,16 +33,11 @@ import "./index.css";
 
 type IncludingInformationProps = {
   croppedPictures: string[];
-  picturesInfo: IPictureInformation[];
-  setPicturesInfo: (picturesInfo: IPictureInformation[]) => void;
 };
 
-function IncludingInformation({
-  croppedPictures,
-  picturesInfo,
-  setPicturesInfo,
-}: IncludingInformationProps) {
+function IncludingInformation({ croppedPictures }: IncludingInformationProps) {
   const { t } = useTranslation();
+  const { picturesInfo, setPicturesInfo } = usePictures();
   const [actualImgIndex, setActualImgIndex] = useState(0);
   const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
   const [amountValue, setAmountValue] = useState(
