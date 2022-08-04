@@ -1,5 +1,5 @@
 // Components
-import AppToolbar from "components/AppToolbar"
+import AppToolbar from "components/AppToolbar";
 
 // Containers
 import MainPage from "containers/MainPage";
