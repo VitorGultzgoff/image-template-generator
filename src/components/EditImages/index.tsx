@@ -23,19 +23,19 @@ import isNil from "lodash/isNil";
 // Style
 import "react-image-crop/dist/ReactCrop.css";
 import "./index.css";
+import { usePictures } from "hooks/usePictures";
 
 interface IEditImagesProps {
-  pictures: string[];
   croppedPictures: string[];
   setCroppedPictures: (croppedPictures: string[]) => void;
 }
 
 const EditImages = ({
-  pictures,
   croppedPictures,
   setCroppedPictures,
 }: IEditImagesProps) => {
   const { t } = useTranslation();
+  const { pictures } = usePictures();
   const genericImg = useRef(null);
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0);
