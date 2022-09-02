@@ -79,7 +79,7 @@ function GenerateTemplate() {
               />
               {(idValue || amountValue) && (
                 <span className="valuesContainer">
-                  {idValue} {formatBRLCurrency(amountValue)}
+                  {idValue} {amountValue ? formatBRLCurrency(amountValue) : ""}
                 </span>
               )}
             </div>
