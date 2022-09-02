@@ -71,7 +71,7 @@ function SelectImages() {
         labelIdle={`${t(
           "select_images.uploader.description"
         )} <span class="filepond--label-action">${t(
-          "select_images.uploader.description"
+          "select_images.uploader.complemented_description"
         )}</span>`}
       />
     </>
