@@ -1,6 +1,6 @@
 // Libs
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import ReactCrop, { Crop } from "react-image-crop";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
+import ReactCrop, { centerCrop, Crop, makeAspectCrop } from "react-image-crop";
 
 // Components
 import Button from "@mui/material/Button";
@@ -28,7 +28,7 @@ import { usePictures } from "hooks/usePictures";
 const EditImages = () => {
   const { t } = useTranslation();
   const { croppedPictures, pictures, setCroppedPictures } = usePictures();
-  const genericImg = useRef(null);
+  const genericImg = useRef<HTMLImageElement | null>(null);
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0);
   const [completedCrop, setCompletedCrop] = useState<Crop>();
@@ -62,9 +62,19 @@ const EditImages = () => {
     return true;
   };
 
-  const onLoad = useCallback((img) => {
-    genericImg.current = img;
-  }, []);
+  const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    const currentImg: HTMLImageElement = event.currentTarget;
+    if (!currentImg) return;
+    genericImg.current = currentImg;
+    const { naturalWidth: width, naturalHeight: height } = currentImg;
+    const crop = centerCrop(
+      makeAspectCrop({ unit: "%", width: 90 }, 16 / 9, width, height),
+      width,
+      height
+    );
+
+    setCrop(crop);
+  };
 
   useEffect(() => {
     if (!completedCrop || !previewCanvasRef.current || !genericImg.current)
