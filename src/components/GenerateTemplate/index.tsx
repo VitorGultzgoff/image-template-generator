@@ -71,6 +71,7 @@ function GenerateTemplate() {
               className={classNames("pictureContainer", {
                 noContentInBox: !idValue && !amountValue,
               })}
+              key={actualPictureIndex}
             >
               <img
                 src={actualPicture}
