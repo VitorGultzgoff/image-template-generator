@@ -18,8 +18,14 @@ const PicturesContext = createContext<IPicturesContextData>(
   {} as IPicturesContextData
 );
 
+interface UsePicturesProviderProps {
+  children?: React.ReactNode;
+}
+
 // Provider
-const UsePicturesProvider: React.FC = ({ children }) => {
+const UsePicturesProvider: React.FC<UsePicturesProviderProps> = ({
+  children,
+}) => {
   const [croppedPictures, setCroppedPictures] = useState<string[]>([]);
   const [pictures, setPictures] = useState<string[]>([]);
   const [picturesInfo, setPicturesInfo] = useState<IPictureInformation[]>([]);
