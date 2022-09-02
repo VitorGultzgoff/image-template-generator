@@ -35,15 +35,17 @@ function IncludingInformation() {
   const { t } = useTranslation();
   const { croppedPictures, picturesInfo, setPicturesInfo } = usePictures();
   const [actualImgIndex, setActualImgIndex] = useState(0);
-  const [idValue, setIdValue] = useState(picturesInfo[actualImgIndex].id);
-  const [amountValue, setAmountValue] = useState(
+  const [idValue, setIdValue] = useState<string | undefined>(
+    picturesInfo[actualImgIndex]?.id
+  );
+  const [amountValue, setAmountValue] = useState<number | undefined>(
     picturesInfo[actualImgIndex].value
   );
   const isFirstPicture = actualImgIndex <= 0;
   const isLastPicture = actualImgIndex >= croppedPictures?.length - 1;
 
   const resetValues = (indexTarget: number) => {
-    setIdValue(picturesInfo[indexTarget].id);
+    setIdValue(picturesInfo[indexTarget]?.id);
     setAmountValue(picturesInfo[indexTarget].value);
   };
 
@@ -130,7 +132,7 @@ function IncludingInformation() {
                 required
                 label={t("general.product.identifier")}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setIdValue(parseInt(e?.target?.value))
+                  setIdValue(e?.target?.value)
                 }
                 InputProps={{
                   startAdornment: (
@@ -154,9 +156,6 @@ function IncludingInformation() {
                 label={`${t("general.product.value")}(${t(
                   "currency.brl.main_ticker"
                 )})`}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setAmountValue(parseFloat(e?.target?.value))
-                }
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="end">
@@ -166,6 +165,7 @@ function IncludingInformation() {
                   inputComponent: CurrencyInput,
                   inputProps: {
                     component: NumberFormat,
+                    setValue: setAmountValue,
                   },
                 }}
                 placeholder={`${t("general.product.value")}(${t(

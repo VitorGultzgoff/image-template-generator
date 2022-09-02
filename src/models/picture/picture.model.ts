@@ -1,4 +1,4 @@
 export interface IPictureInformation {
-  id: number;
-  value: number;
+  id: string | undefined;
+  value: number | undefined;
 }

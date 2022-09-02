@@ -33,8 +33,8 @@ function SelectImages() {
     // May be replaced for an array create without forEach
     imgsData.forEach((actualImg) => {
       picturesInfo.push({
-        id: 0,
-        value: 0,
+        id: undefined,
+        value: undefined,
       });
     });
     setPicturesInfo(picturesInfo);
