@@ -1,28 +1,29 @@
 // Components
-import { StepConnector, styled } from "@mui/material";
+import { StepConnector, stepConnectorClasses, styled } from "@mui/material";
 
-const StepConnectorStyled = styled(StepConnector)({
-  alternativeLabel: {
+const StepConnectorStyled = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
   },
-  active: {
-    "& $line": {
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
         "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
-  completed: {
-    "& $line": {
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
       backgroundImage:
         "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
     },
   },
-  line: {
+  [`& .${stepConnectorClasses.line}`]: {
     height: 3,
     border: 0,
-    backgroundColor: "#eaeaf0",
+    backgroundColor:
+      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
     borderRadius: 1,
   },
-});
+}));
 
 export default StepConnectorStyled;
