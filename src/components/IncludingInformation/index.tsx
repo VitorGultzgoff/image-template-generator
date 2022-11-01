@@ -45,8 +45,8 @@ function IncludingInformation() {
   const isLastPicture = actualImgIndex >= croppedPictures?.length - 1;
 
   const setValuesByIndex = (indexTarget: number) => {
-    setIdValue(picturesInfo[indexTarget]?.id);
-    setAmountValue(picturesInfo[indexTarget].value);
+    setIdValue(picturesInfo[indexTarget]?.id || "");
+    setAmountValue(picturesInfo[indexTarget].value || 0);
   };
 
   const backImg = () => {
