@@ -44,24 +44,24 @@ function IncludingInformation() {
   const isFirstPicture = actualImgIndex <= 0;
   const isLastPicture = actualImgIndex >= croppedPictures?.length - 1;
 
-  const resetValues = (indexTarget: number) => {
+  const setValuesByIndex = (indexTarget: number) => {
     setIdValue(picturesInfo[indexTarget]?.id);
     setAmountValue(picturesInfo[indexTarget].value);
   };
 
   const backImg = () => {
     if (isFirstPicture) return false;
-    const indexTarget = actualImgIndex - 1;
-    setActualImgIndex(indexTarget);
-    resetValues(actualImgIndex - 1);
+    const imgTargetIndex = actualImgIndex - 1;
+    setActualImgIndex(imgTargetIndex);
+    setValuesByIndex(imgTargetIndex);
     return true;
   };
 
   const nextImg = () => {
     if (isLastPicture) return false;
-    const indexTarget = actualImgIndex + 1;
-    setActualImgIndex(indexTarget);
-    resetValues(indexTarget);
+    const imgTargetIndex = actualImgIndex + 1;
+    setActualImgIndex(imgTargetIndex);
+    setValuesByIndex(imgTargetIndex);
     return true;
   };
 
