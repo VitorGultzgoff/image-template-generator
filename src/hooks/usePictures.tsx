@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useMemo } from "react";
 // Models
 import { IPictureInformation } from "models/picture/picture.model";
 
-interface IPicturesContextData {
+export interface IPicturesContextData {
   pictures: string[];
   setPictures: (pictures: string[]) => void;
   picturesInfo: IPictureInformation[];
