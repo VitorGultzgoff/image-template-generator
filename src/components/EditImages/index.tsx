@@ -1,33 +1,30 @@
 // Libs
-import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
+import React, {
+  SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ReactCrop, { centerCrop, Crop, makeAspectCrop } from "react-image-crop";
 
 // Components
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import EditImagesActions from "../EditImagesActions";
 
-// Icons
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CropIcon from "@mui/icons-material/Crop";
-
-// Libs
-import { useTranslation } from "react-i18next";
+// Hooks
+import { usePictures } from "hooks/usePictures";
 
 // Utils
-import _clone from "lodash/clone";
-import { convertCanvasIntoImg } from "utils/image";
-import { containerHorizontalCenterAligned } from "utils/style";
 import isNil from "lodash/isNil";
 
 // Style
 import "react-image-crop/dist/ReactCrop.css";
 import "./index.css";
-import { usePictures } from "hooks/usePictures";
 
 const EditImages = () => {
-  const { t } = useTranslation();
-  const { croppedPictures, pictures, setCroppedPictures } = usePictures();
+  const { croppedPictures, pictures } = usePictures();
   const genericImg = useRef<HTMLImageElement | null>(null);
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0);
@@ -35,32 +32,6 @@ const EditImages = () => {
   const [crop, setCrop] = useState<Crop>();
   const isFirstPicture = actualPictureIndex <= 0;
   const isLastPicture = actualPictureIndex >= pictures?.length - 1;
-
-  const backPicture = () => {
-    if (isFirstPicture) return false;
-    setActualPictureIndex(actualPictureIndex - 1);
-    return true;
-  };
-
-  const cropPicture = () => {
-    const { current } = previewCanvasRef;
-    if (isNil(current)) return;
-    const pictureMapped = convertCanvasIntoImg(current);
-    mapCroppedPicture(actualPictureIndex, pictureMapped?.src);
-    nextPicture();
-  };
-
-  const mapCroppedPicture = (pictureIndex: number, updatedPicture: string) => {
-    const mappedCroppedPictures = _clone(croppedPictures);
-    mappedCroppedPictures[pictureIndex] = updatedPicture;
-    setCroppedPictures(mappedCroppedPictures);
-  };
-
-  const nextPicture = () => {
-    if (isLastPicture) return false;
-    setActualPictureIndex(actualPictureIndex + 1);
-    return true;
-  };
 
   const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     const currentImg: HTMLImageElement = event.currentTarget;
@@ -76,7 +47,7 @@ const EditImages = () => {
     setCrop(crop);
   };
 
-  useEffect(() => {
+  const mapImageCropPreview = useCallback(() => {
     if (!completedCrop || !previewCanvasRef.current || !genericImg.current)
       return;
 
@@ -110,70 +81,49 @@ const EditImages = () => {
       crop.width * scaleX,
       crop.height * scaleY
     );
-  }, [completedCrop]);
+  }, [completedCrop, crop]);
+
+  useEffect(() => {
+    mapImageCropPreview();
+  }, [mapImageCropPreview]);
 
   return (
-    <section id="editImgContainer">
-      <div className="cropContainer">
-        <ReactCrop
-          crop={crop}
-          onChange={(c) => setCrop(c)}
-          onComplete={(c) => setCompletedCrop(c)}
-        >
-          <img
-            alt={`${actualPictureIndex} of template`}
-            src={pictures[actualPictureIndex]}
-            onLoad={onLoad}
+    <Box marginTop={4}>
+      <Divider />
+      <EditImagesActions
+        actualPictureIndex={actualPictureIndex}
+        croppedPictures={croppedPictures}
+        isFirstPicture={isFirstPicture}
+        isLastPicture={isLastPicture}
+        previewCanvasRef={previewCanvasRef}
+        setActualPictureIndex={setActualPictureIndex}
+      />
+      <Divider />
+      <section id="editImgContainer">
+        <div className="cropContainer">
+          <ReactCrop
+            crop={crop}
+            onChange={(c) => setCrop(c)}
+            onComplete={(c) => setCompletedCrop(c)}
+          >
+            <img
+              alt={`${actualPictureIndex} of template`}
+              src={pictures[actualPictureIndex]}
+              onLoad={onLoad}
+            />
+          </ReactCrop>
+        </div>
+        <div className="previewContainer">
+          <canvas
+            ref={previewCanvasRef}
+            style={{
+              width: Math.round(completedCrop?.width ?? 0),
+              height: Math.round(completedCrop?.height ?? 0),
+            }}
           />
-        </ReactCrop>
-      </div>
-      <div className="previewContainer">
-        <canvas
-          ref={previewCanvasRef}
-          style={{
-            width: Math.round(completedCrop?.width ?? 0),
-            height: Math.round(completedCrop?.height ?? 0),
-          }}
-        />
-      </div>
-
-      <div className="actionsContainer">
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
-            <Button
-              disabled={isFirstPicture}
-              variant="contained"
-              startIcon={<ArrowBackIcon />}
-              color="error"
-              onClick={backPicture}
-            >
-              {t("general.previous")}
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
-            <Button
-              variant="contained"
-              startIcon={<CropIcon />}
-              color="primary"
-              onClick={cropPicture}
-            >
-              {t("general.crop")}
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={4} {...containerHorizontalCenterAligned}>
-            <Button
-              disabled={isLastPicture}
-              variant="contained"
-              endIcon={<ArrowForwardIcon />}
-              color="secondary"
-              onClick={nextPicture}
-            >
-              {t("general.nextImage")}
-            </Button>
-          </Grid>
-        </Grid>
-      </div>
-    </section>
+        </div>
+      </section>
+    </Box>
   );
 };
 
