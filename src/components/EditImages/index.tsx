@@ -81,7 +81,8 @@ const EditImages = () => {
       crop.width * scaleX,
       crop.height * scaleY
     );
-  }, [completedCrop]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completedCrop, crop]);
 
   useEffect(() => {
     mapImageCropPreview();
