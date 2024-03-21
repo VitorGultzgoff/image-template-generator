@@ -1,5 +1,5 @@
 // Libs
-import React, { useState } from "react";
+import React from "react";
 
 // Components
 import EditImages from "components/EditImages";
