@@ -1,3 +1,7 @@
 .selectImgContainer {
   margin-top: 20px;
 }
+
+.filepond--item {
+  width: calc(20% - .5em);
+}

@@ -62,12 +62,14 @@ function SelectImages() {
   return (
     <>
       <FilePond
+        allowMultiple={true}
+        allowReorder={true}
         className="selectImgContainer"
         files={pictures}
-        onupdatefiles={uploadImages}
-        allowMultiple={true}
         maxFiles={250}
         name="files"
+        onreorderfiles={uploadImages}
+        onupdatefiles={uploadImages}
         labelIdle={`${t(
           "select_images.uploader.description"
         )} <span class="filepond--label-action">${t(
