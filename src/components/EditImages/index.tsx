@@ -81,7 +81,7 @@ const EditImages = () => {
       crop.width * scaleX,
       crop.height * scaleY
     );
-  }, [completedCrop, crop]);
+  }, [completedCrop]);
 
   useEffect(() => {
     mapImageCropPreview();
