@@ -12,7 +12,7 @@ const convertCanvasIntoImg = (canvasTarget: HTMLCanvasElement) => {
 
 const exportContentAsJPEG = (
   contentTargetId: string,
-  imageName = "generated-image"
+  imageName = "contentToPrint"
 ) => {
   const elementTarget = document.getElementById(contentTargetId);
   if (isNil(elementTarget)) return;
