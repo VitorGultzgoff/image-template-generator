@@ -16,6 +16,7 @@ import { MAIN_STEPS_ENUM } from "constants/steps";
 
 // Hooks
 import { usePictures } from "hooks/usePictures";
+import { useSteps } from "hooks/useSteps";
 
 // Libs
 import { useTranslation } from "react-i18next";
@@ -29,7 +30,7 @@ import _isEmpty from "lodash/isEmpty";
 function MainPage() {
   const { t } = useTranslation();
   const { pictures, picturesInfo } = usePictures();
-  const [activeStep, setActiveStep] = useState(0);
+  const { activeStep, setActiveStep } = useSteps();
   const getSteps = () => {
     const functionalities_prefix = "functionalities.";
     return [

@@ -3,6 +3,7 @@ import MainPage from "containers/MainPage";
 
 // Hooks
 import { UsePicturesProvider } from "hooks/usePictures";
+import { UseStepsProvider } from "hooks/useSteps";
 
 // Libs
 import "./i18n";
@@ -13,9 +14,11 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <UsePicturesProvider>
-        <MainPage />
-      </UsePicturesProvider>
+      <UseStepsProvider>
+        <UsePicturesProvider>
+          <MainPage />
+        </UsePicturesProvider>
+      </UseStepsProvider>
     </div>
   );
 }
