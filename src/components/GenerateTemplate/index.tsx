@@ -14,7 +14,7 @@ import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 // Utils
 import { exportContentAsJPEG } from "utils/image";
 import { formatBRLCurrency } from "utils/currency";
-import { exportDataAsJSON } from "utils/file";
+// import { exportDataAsJSON } from "utils/file";
 
 // Style
 import "./index.css";
@@ -27,11 +27,11 @@ function GenerateTemplate() {
   const [isPdfFile, setIsPdfFile] = useState(false);
   const contentToPrintElement = "contentToPrint";
   const exportedFileName = "catalogo-vendas";
-  const exportedJSONData = { croppedPictures, picturesInfo };
+  // const exportedJSONData = { croppedPictures, picturesInfo };
 
   const exportAllImgData = () => {
     exportContentAsJPEG(contentToPrintElement, exportedFileName);
-    exportDataAsJSON(exportedJSONData, exportedFileName);
+    // exportDataAsJSON(exportedJSONData, exportedFileName);
   };
 
   const printSwitcher = () => {
@@ -40,7 +40,7 @@ function GenerateTemplate() {
         <ReactToPrint
           trigger={() => <PrintAction />}
           content={() => componentRef.current}
-          onAfterPrint={() => exportDataAsJSON(exportedJSONData)}
+          // onAfterPrint={() => exportDataAsJSON(exportedJSONData)}
         />
       );
     }
