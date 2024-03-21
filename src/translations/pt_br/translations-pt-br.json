@@ -12,9 +12,12 @@
   },
   "general": {
     "crop": "Recortar",
+    "download": "Baixar",
+    "downloading": "Baixando",
     "nextImage": "Próxima",
     "previous": "Anterior",
     "print": "Imprimir",
+    "printing": "Imprimindo",
     "product": {
       "identifier": "Identificador do produto",
       "value": "Valor do produto"

@@ -11,10 +11,13 @@
     "edit_images": "Edit images"
   },
   "general": {
+    "download": "Download",
+    "downloading": "Downloading",
     "crop": "Crop",
     "nextImage": "Next",
     "previous": "Previous",
     "print": "Print",
+    "printing": "Printing",
     "product": {
       "identifier": "Product identifier",
       "value": "Product value"

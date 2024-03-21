@@ -4,7 +4,7 @@ import ReactToPrint from "react-to-print";
 
 // Components
 import { Grid } from "@mui/material";
-import PrintAction from "components/GenerateTemplate/PrintAction";
+import ExportAction from "components/GenerateTemplate/ExportAction";
 import SwitchFormInput from "components/form/Switch/SwitchFormInput";
 
 // Icons
@@ -25,12 +25,16 @@ function GenerateTemplate() {
   const { croppedPictures, picturesInfo } = usePictures();
   const componentRef = useRef<HTMLDivElement>(null);
   const [isPdfFile, setIsPdfFile] = useState(false);
+  const [exportingContent, setExportingContent] = useState(false);
   const contentToPrintElement = "contentToPrint";
   const exportedFileName = "catalogo-vendas";
   // const exportedJSONData = { croppedPictures, picturesInfo };
 
   const exportAllImgData = () => {
-    exportContentAsJPEG(contentToPrintElement, exportedFileName);
+    setExportingContent(true);
+    exportContentAsJPEG(contentToPrintElement, exportedFileName, () =>
+      setExportingContent(false)
+    );
     // exportDataAsJSON(exportedJSONData, exportedFileName);
   };
 
@@ -38,13 +42,23 @@ function GenerateTemplate() {
     if (isPdfFile) {
       return (
         <ReactToPrint
-          trigger={() => <PrintAction />}
+          trigger={() => <ExportAction loading={exportingContent} type="pdf" />}
           content={() => componentRef.current}
+          onAfterPrint={() => setExportingContent(false)}
+          onBeforePrint={() => setExportingContent(true)}
           // onAfterPrint={() => exportDataAsJSON(exportedJSONData)}
         />
       );
     }
-    return <PrintAction action={() => exportAllImgData()} />;
+    return (
+      <ExportAction
+        action={() => {
+          exportAllImgData();
+        }}
+        loading={exportingContent}
+        type={isPdfFile ? "pdf" : "image"}
+      />
+    );
   };
 
   return (
