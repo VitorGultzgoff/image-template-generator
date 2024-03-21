@@ -15,6 +15,7 @@ import EditImagesActions from "../EditImagesActions";
 
 // Hooks
 import { usePictures } from "hooks/usePictures";
+import { useSteps } from "hooks/useSteps";
 
 // Utils
 import isNil from "lodash/isNil";
@@ -28,10 +29,11 @@ const EditImages = () => {
   const genericImg = useRef<HTMLImageElement | null>(null);
   const previewCanvasRef = useRef(null);
   const [actualPictureIndex, setActualPictureIndex] = useState(0);
-  const [completedCrop, setCompletedCrop] = useState<Crop>();
+  const [completedCrop, setCompletedCrop] = useState<Crop | null>();
   const [crop, setCrop] = useState<Crop>();
   const isFirstPicture = actualPictureIndex <= 0;
   const isLastPicture = actualPictureIndex >= pictures?.length - 1;
+  const { activeStep, setActiveStep } = useSteps();
 
   const onLoad = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     const currentImg: HTMLImageElement = event.currentTarget;
@@ -45,6 +47,7 @@ const EditImages = () => {
     );
 
     setCrop(crop);
+    setCompletedCrop(null);
   };
 
   const mapImageCropPreview = useCallback(() => {
@@ -88,6 +91,8 @@ const EditImages = () => {
     mapImageCropPreview();
   }, [mapImageCropPreview]);
 
+  const goToNextStep = () => setActiveStep(activeStep + 1);
+
   return (
     <Box marginTop={4}>
       <Divider />
@@ -96,6 +101,7 @@ const EditImages = () => {
         croppedPictures={croppedPictures}
         isFirstPicture={isFirstPicture}
         isLastPicture={isLastPicture}
+        lastPictureCallback={() => goToNextStep()}
         previewCanvasRef={previewCanvasRef}
         setActualPictureIndex={setActualPictureIndex}
       />

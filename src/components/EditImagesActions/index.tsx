@@ -30,6 +30,7 @@ interface EditImagesProps {
   croppedPictures: IPicturesContextData["croppedPictures"];
   isFirstPicture: boolean;
   isLastPicture: boolean;
+  lastPictureCallback?: () => void;
   previewCanvasRef: MutableRefObject<HTMLCanvasElement | null>;
   setActualPictureIndex: Dispatch<SetStateAction<number>>;
 }
@@ -39,6 +40,7 @@ const EditImages = ({
   croppedPictures,
   isFirstPicture,
   isLastPicture,
+  lastPictureCallback,
   previewCanvasRef,
   setActualPictureIndex,
 }: EditImagesProps) => {
@@ -56,6 +58,7 @@ const EditImages = ({
     if (isNil(current)) return;
     const pictureMapped = convertCanvasIntoImg(current);
     mapCroppedPicture(actualPictureIndex, pictureMapped?.src);
+    if (isLastPicture) lastPictureCallback && lastPictureCallback();
     nextPicture();
   };
 
