@@ -3,7 +3,7 @@ import React from "react";
 import clsx from "clsx";
 
 // Components
-import { useSwitch } from "@mui/base/SwitchUnstyled";
+import { useSwitch } from "@mui/base/useSwitch";
 import SwitchInput from "components/form/Switch/SwitchInput";
 import SwitchRoot from "components/form/Switch/SwitchRoot";
 import SwitchThumb from "components/form/Switch/SwitchThumb";
