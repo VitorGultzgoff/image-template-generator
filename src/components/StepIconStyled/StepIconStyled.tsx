@@ -11,7 +11,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import { StepIconProps, styled } from "@mui/material";
 import { isNil } from "lodash";
 
-const StyledContainer = styled("div")<{
+export const StyledContainer = styled("div")<{
   ownerState: { completed?: boolean; active?: boolean };
 }>(({ theme, ownerState }) => ({
   backgroundColor:
@@ -35,7 +35,7 @@ const StyledContainer = styled("div")<{
   }),
 }));
 
-function StepIconStyled(props: StepIconProps) {
+export const StepIconStyled = (props: StepIconProps) => {
   const { active, completed, className } = props;
   const icons = {
     1: <PanToolIcon />,
@@ -58,6 +58,6 @@ function StepIconStyled(props: StepIconProps) {
       {icons[iconStr as keyof typeof icons]}
     </StyledContainer>
   );
-}
+};
 
 export default StepIconStyled;

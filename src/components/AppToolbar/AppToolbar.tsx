@@ -13,7 +13,7 @@ import Toolbar from "@mui/material/Toolbar";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import MenuIcon from "@mui/icons-material/Menu";
 
-export default function AppToolbar() {
+export const AppToolbar = () => {
   const { t } = useTranslation();
 
   return (
@@ -37,4 +37,6 @@ export default function AppToolbar() {
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default AppToolbar;

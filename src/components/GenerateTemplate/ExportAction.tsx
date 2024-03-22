@@ -21,16 +21,15 @@ interface ExportActionProps {
   type: ExportType;
 }
 
-export default function ExportAction({
+export const ExportAction = ({
   action,
   loading,
   onClick,
   type = "image",
-}: ExportActionProps) {
+}: ExportActionProps) => {
   const { t } = useTranslation();
   const actionMapped = action ? action : onClick;
   const isImgExport = type === "image";
-  console.log("current loading = ", loading);
 
   const getExportIcon = () => {
     if (loading) return <CircularProgress color="inherit" size={20} />;
@@ -58,4 +57,6 @@ export default function ExportAction({
       {getExportLabel()}
     </Button>
   );
-}
+};
+
+export default ExportAction;

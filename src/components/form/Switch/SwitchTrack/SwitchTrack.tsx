@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SwitchTrack = styled("span")`
+export const SwitchTrack = styled("span")`
   background-color: #bfc7cf;
   border-radius: 4px;
   width: 100%;

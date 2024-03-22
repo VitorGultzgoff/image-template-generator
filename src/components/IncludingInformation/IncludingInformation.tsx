@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 import { useTranslation } from "react-i18next";
 
 // Components
-import CurrencyInput from "components/form/CurrencyInput";
+import CurrencyInput from "components/form/CurrencyInput/CurrencyInput";
 import Grid from "@mui/material/Grid";
 import InputAdornment from "@mui/material/InputAdornment";
 
@@ -29,9 +29,9 @@ import {
   ProductInfoInput,
   ProductInfoInputValueContainer,
 } from "./styles";
-import "./index.css";
+import "./IncludingInformation.css";
 
-function IncludingInformation() {
+export const IncludingInformation = () => {
   const { t } = useTranslation();
   const { croppedPictures, picturesInfo, setPicturesInfo } = usePictures();
   const [actualImgIndex, setActualImgIndex] = useState(0);
@@ -179,6 +179,6 @@ function IncludingInformation() {
       </div>
     </div>
   );
-}
+};
 
 export default IncludingInformation;

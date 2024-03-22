@@ -17,11 +17,11 @@ import { formatBRLCurrency } from "utils/currency";
 // import { exportDataAsJSON } from "utils/file";
 
 // Style
-import "./index.css";
+import "./GenerateTemplate.css";
 import classNames from "classnames";
 import { usePictures } from "hooks/usePictures";
 
-function GenerateTemplate() {
+export const GenerateTemplate = () => {
   const { croppedPictures, picturesInfo } = usePictures();
   const componentRef = useRef<HTMLDivElement>(null);
   const [isPdfFile, setIsPdfFile] = useState(false);
@@ -103,6 +103,6 @@ function GenerateTemplate() {
       </div>
     </div>
   );
-}
+};
 
 export default GenerateTemplate;

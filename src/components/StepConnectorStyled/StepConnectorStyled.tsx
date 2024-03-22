@@ -1,7 +1,7 @@
 // Components
 import { StepConnector, stepConnectorClasses, styled } from "@mui/material";
 
-const StepConnectorStyled = styled(StepConnector)(({ theme }) => ({
+export const StepConnectorStyled = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
     top: 22,
   },

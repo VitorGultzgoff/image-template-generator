@@ -22,9 +22,9 @@ import isNil from "lodash/isNil";
 
 // Style
 import "react-image-crop/dist/ReactCrop.css";
-import "./index.css";
+import "./EditImages.css";
 
-const EditImages = () => {
+export const EditImages = () => {
   const { croppedPictures, pictures } = usePictures();
   const genericImg = useRef<HTMLImageElement | null>(null);
   const previewCanvasRef = useRef(null);

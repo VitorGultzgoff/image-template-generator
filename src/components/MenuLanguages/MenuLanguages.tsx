@@ -14,7 +14,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 // Utils
 import { switchLanguage } from "utils/i18n";
 
-export default function MenuLanguages() {
+export const MenuLanguages = () => {
   const [anchorLangs, setAnchorLang] = useState<HTMLElement | null>(null);
 
   const switchGlobalLanguage = (lang: string) => {
@@ -67,4 +67,6 @@ export default function MenuLanguages() {
       </Menu>
     </>
   );
-}
+};
+
+export default MenuLanguages;

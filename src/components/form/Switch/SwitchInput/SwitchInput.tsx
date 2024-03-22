@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SwitchInput = styled("input")`
+export const SwitchInput = styled("input")`
   position: absolute;
   width: 100%;
   height: 100%;

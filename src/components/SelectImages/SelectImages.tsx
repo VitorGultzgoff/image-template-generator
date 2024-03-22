@@ -13,7 +13,7 @@ import { IPictureInformation } from "models/picture/picture.model";
 import { fileToDataURL } from "utils/file";
 
 // Styles
-import "./index.css";
+import "./SelectImages.css";
 
 // FilePond
 import "filepond/dist/filepond.min.css";
@@ -23,7 +23,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { ActualFileObject, FilePondFile } from "filepond";
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-function SelectImages() {
+export const SelectImages = () => {
   const { t } = useTranslation();
   const { setPicturesInfo } = usePictures();
   const { pictures, setCroppedPictures, setPictures } = usePictures();
@@ -78,6 +78,6 @@ function SelectImages() {
       />
     </>
   );
-}
+};
 
 export default SelectImages;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SwitchThumb = styled("span")`
+export const SwitchThumb = styled("span")`
   position: absolute;
   display: block;
   background-color: #0059b2;

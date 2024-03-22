@@ -23,9 +23,9 @@ import { containerHorizontalCenterAligned } from "utils/style";
 import { convertCanvasIntoImg } from "utils/image";
 
 // Style
-import "./index.css";
+import "./EditImagesActions.css";
 
-interface EditImagesProps {
+interface EditImagesActionsProps {
   actualPictureIndex: number;
   croppedPictures: IPicturesContextData["croppedPictures"];
   isFirstPicture: boolean;
@@ -35,7 +35,7 @@ interface EditImagesProps {
   setActualPictureIndex: Dispatch<SetStateAction<number>>;
 }
 
-const EditImages = ({
+export const EditImagesActions = ({
   actualPictureIndex,
   croppedPictures,
   isFirstPicture,
@@ -43,7 +43,7 @@ const EditImages = ({
   lastPictureCallback,
   previewCanvasRef,
   setActualPictureIndex,
-}: EditImagesProps) => {
+}: EditImagesActionsProps) => {
   const { t } = useTranslation();
   const { setCroppedPictures } = usePictures();
 
@@ -114,4 +114,4 @@ const EditImages = ({
   );
 };
 
-export default EditImages;
+export default EditImagesActions;

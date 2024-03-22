@@ -17,7 +17,7 @@ interface ISwitchFormInputProps extends InputProps {
   RightIcon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
 }
 
-export default function SwitchFormInput(props: ISwitchFormInputProps) {
+export const SwitchFormInput = (props: ISwitchFormInputProps) => {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
   const { LeftIcon, RightIcon } = props;
 
@@ -41,4 +41,6 @@ export default function SwitchFormInput(props: ISwitchFormInputProps) {
       <SwitchInput {...getInputProps()} aria-label="generic-switch-input" />
     </SwitchRoot>
   );
-}
+};
+
+export default SwitchFormInput;

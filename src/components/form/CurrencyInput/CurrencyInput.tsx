@@ -5,8 +5,8 @@ import React, { forwardRef } from "react";
 import { ICurrencyInput } from "models/components/Input.model";
 import { InputBaseComponentProps } from "@mui/material";
 
-const CurrencyInput: React.ElementType<InputBaseComponentProps> = forwardRef(
-  ({ component: Component, setValue, ...other }: ICurrencyInput) => {
+export const CurrencyInput: React.ElementType<InputBaseComponentProps> =
+  forwardRef(({ component: Component, setValue, ...other }: ICurrencyInput) => {
     return (
       <Component
         {...other}
@@ -17,7 +17,6 @@ const CurrencyInput: React.ElementType<InputBaseComponentProps> = forwardRef(
         onValueChange={({ floatValue }) => setValue(floatValue)}
       />
     );
-  }
-);
+  });
 
 export default CurrencyInput;

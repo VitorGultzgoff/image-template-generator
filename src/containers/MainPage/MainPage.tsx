@@ -6,7 +6,7 @@ import EditImages from "components/EditImages";
 import GenerateTemplate from "components/GenerateTemplate";
 import Grid from "@mui/material/Grid";
 import IncludingInformation from "components/IncludingInformation";
-import SelectImages from "components/SelectImages";
+import SelectImages from "components/SelectImages/SelectImages";
 import StepConnectorStyled from "components/StepConnectorStyled";
 import StepIconStyled from "components/StepIconStyled";
 import { Step, StepLabel, Stepper } from "@mui/material";
@@ -22,12 +22,12 @@ import { useSteps } from "hooks/useSteps";
 import { useTranslation } from "react-i18next";
 
 // Style
-import "./index.css";
+import "./MainPage.css";
 
 // Utils
 import _isEmpty from "lodash/isEmpty";
 
-function MainPage() {
+export const MainPage = () => {
   const { t } = useTranslation();
   const { pictures, picturesInfo } = usePictures();
   const { activeStep, setActiveStep } = useSteps();
@@ -110,6 +110,6 @@ function MainPage() {
       </Grid>
     </div>
   );
-}
+};
 
 export default MainPage;

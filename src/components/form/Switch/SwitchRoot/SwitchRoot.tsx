@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SwitchRoot = styled("span")`
+export const SwitchRoot = styled("span")`
   display: inline-block;
   position: relative;
   width: 80px;
